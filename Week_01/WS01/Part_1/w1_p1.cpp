@@ -5,10 +5,9 @@
 #include <iomanip>
 #include <fstream>
 #include "FoodOrder.h"
-#include "FoodOrder.h"
 
-double g_taxrate;
-double g_dailydiscount;
+double g_taxrate = 0;
+double g_dailydiscount = 0;
 
 /* input file format: a comma separated set of fields with a consistent format of
 <Order Tag>,<Customer Name>,<Order Description>,<Price>,<Daily Special Status>

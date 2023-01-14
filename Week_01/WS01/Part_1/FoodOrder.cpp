@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <cstring>
+#include <iomanip>
 using namespace std;
 
 namespace sdds {
@@ -55,7 +56,12 @@ namespace sdds {
 
     void FoodOrder::display() const {
         if (customerName != nullptr) {
-            cout << customerName << " " << foodDescription << " " << foodPrice << " " << dailySpecial << endl;
+            cout
+            << setw(2) << left << "1" << ". "
+            << setw(10) <<  customerName
+            << "|" << setw(25) << foodDescription
+            << "|" << setw(12) << fixed << setprecision(2) << foodPrice
+            << "|" << setw(13) << right << dailySpecial << endl;
         }
     }
 
