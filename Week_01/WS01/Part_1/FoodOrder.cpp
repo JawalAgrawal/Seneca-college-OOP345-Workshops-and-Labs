@@ -1,6 +1,7 @@
 #include "FoodOrder.h"
-
+#include <sstream>
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 namespace sdds {
@@ -8,26 +9,44 @@ namespace sdds {
         setEmpty();
     }
 
+    FoodOrder::~FoodOrder() {
+        deallocate();
+    }
+
     std::istream& FoodOrder::read(std::istream& is) {
         if (is) {
-//            <Customer Name>,<Order Description>,<Price>,<Daily Special Status>[newline]
-            string name;
-            string orderDescription;
-            string price;
-            string dailySpecialStatus;
-            string line;
+            char temp[1024];
+            is.getline(temp, 1024, ',');
+
+//            if (customerName) {
+//                delete[] customerName;
+//                customerName = nullptr;
+//            }
+
+            if (is) {
+                customerName = new char[strlen(temp) + 1];
+                strcpy(customerName, temp);
+            }
+
         }
         return is;
     }
 
     void FoodOrder::display() const {
-        cout << "2 . Julian    |8 Piece Sushi Set        |9.03        |         7.88" << endl;
+//        cout << customerName << foodDescription << foodPrice << dailySpecial << endl;
+        cout << customerName << endl;
+
     }
 
     void FoodOrder::setEmpty() {
-        customerName[0] = '\0';
-        foodDescription[0] = '\0';
+        customerName = nullptr;
+        foodDescription = nullptr;
         foodPrice = 0;
         dailySpecial = false;
+    }
+
+    void FoodOrder::deallocate() {
+        delete[] customerName;
+        delete[] foodDescription;
     }
 }

@@ -4,8 +4,11 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include "foodorder.h"
-#include "foodorder.h"
+#include "FoodOrder.h"
+#include "FoodOrder.h"
+
+double g_taxrate;
+double g_dailydiscount;
 
 /* input file format: a comma separated set of fields with a consistent format of
 <Order Tag>,<Customer Name>,<Order Description>,<Price>,<Daily Special Status>
@@ -25,7 +28,7 @@ int main (int argc, char *argv[])
 	std::cout << "--------------------------\n";
 
     // Printing the command line arguments
-    for (int i = 1; i < argc; i++) {
+    for (int i = 0; i < argc; i++) {
         std::cout << i + 1 << ": " << argv[i] << std::endl;
     }
 

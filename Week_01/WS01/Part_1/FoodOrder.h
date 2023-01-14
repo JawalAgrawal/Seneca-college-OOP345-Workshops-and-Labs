@@ -3,21 +3,20 @@
 
 #include <iostream>
 
-double g_taxrate;
-double g_dailydiscount;
-
 namespace sdds {
     class FoodOrder {
     private:
-        char customerName[10];
-        char foodDescription[25];
+        char* customerName;
+        char* foodDescription;
         double foodPrice;
         bool dailySpecial;
 
         void setEmpty();
+        void deallocate();
 
     public:
         FoodOrder();
+        ~FoodOrder();
         std::istream& read(std::istream& is);
         void display() const;
     };
