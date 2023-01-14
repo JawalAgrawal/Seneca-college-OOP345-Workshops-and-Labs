@@ -3,8 +3,9 @@
 
 #include <iostream>
 
-static double g_taxrate = 0;
-static double g_dailydiscount = 0;
+// Global Variables
+extern double g_taxrate;
+extern double g_dailydiscount;
 
 namespace sdds {
     class FoodOrder {

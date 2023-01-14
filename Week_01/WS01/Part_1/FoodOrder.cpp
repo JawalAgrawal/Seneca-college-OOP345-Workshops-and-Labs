@@ -5,6 +5,10 @@
 #include <iomanip>
 using namespace std;
 
+// Global Variables
+double g_taxrate;
+double g_dailydiscount;
+
 namespace sdds {
     FoodOrder::FoodOrder() {
         setEmpty();
@@ -65,8 +69,16 @@ namespace sdds {
             << setw(2) << left << counter << ". "
             << setw(10) <<  customerName
             << "|" << setw(25) << foodDescription
-            << "|" << setw(12) << fixed << setprecision(2) << (foodPrice)
-            << "|" << setw(13) << right << (dailySpecial) << endl;
+            << "|" << setw(12) << fixed << setprecision(2) << (foodPrice + (foodPrice * g_taxrate))
+            << "|" << setw(13) << right;
+
+            // Checking whether there is a discounted price to display
+            if (dailySpecial) {
+                cout << (foodPrice + (foodPrice * g_taxrate)) - g_dailydiscount << endl;
+            } else {
+                cout << endl;
+            }
+
         }
         counter++;
     }
