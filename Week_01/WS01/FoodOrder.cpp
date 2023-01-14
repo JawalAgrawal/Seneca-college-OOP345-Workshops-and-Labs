@@ -1,3 +1,14 @@
+/*
+*****************************************************************************
+                              FoodOrder.cpp
+Full Name  : Aryan Khurana
+Student ID#: 145282216
+Email      : akhurana22@myseneca.ca
+Date of completion    : 14 January 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
 #include "FoodOrder.h"
 #include <string>
 #include <iostream>
@@ -23,8 +34,8 @@ namespace sdds {
         if (is) {
 
             // Reading the customer name
-            char temp[1024];
-            is.getline(temp, 1024, ',');
+            char temp[256];
+            is.getline(temp, 256, ',');
 
             // Checking whether the customer name exists
             if (strlen(temp) > 0) {
@@ -32,8 +43,8 @@ namespace sdds {
                 strcpy(customerName, temp);
 
                 // Reading the Food Description
-                char temp2[1024];
-                is.getline(temp2, 1024, ',');
+                char temp2[256];
+                is.getline(temp2, 256, ',');
                 foodDescription = new char[strlen(temp2) + 1];
                 strcpy(foodDescription, temp2);
 
@@ -42,8 +53,8 @@ namespace sdds {
                 is.ignore(1);
 
                 // Reading whether there is any special pricing
-                char temp3[1024];
-                is.getline(temp3, 1024, '\n');
+                char temp3[256];
+                is.getline(temp3, 256, '\n');
                 if (temp3[0] == 'N') {
                     dailySpecial = false;
                 } else if (temp3[0] == 'Y') {
