@@ -19,17 +19,15 @@
 	N - Is not a daily special
 */
 
-// TODO: write the prototype for the main function
-//         to accept command line arguments
-
+int main (int argc, char *argv[])
 {
 	std::cout << "Command Line:\n";
 	std::cout << "--------------------------\n";
-	// TODO: print the command line here, in the format
-	//   1: first argument
-	//   2: second argument
-	//   3: third argument
-	//   ...
+
+    // Printing the command line arguments
+    for (int i = 1; i < argc; i++) {
+        std::cout << i + 1 << ": " << argv[i] << std::endl;
+    }
 
 
 	std::cout << "--------------------------\n\n";
