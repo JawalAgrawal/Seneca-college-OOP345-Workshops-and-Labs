@@ -1,0 +1,35 @@
+/*
+*****************************************************************************
+                              Reflect.txt
+Full Name  : Aryan Khurana
+Student ID#: 145282216
+Email      : akhurana22@myseneca.ca
+Date of completion    : 14 January 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+Through this workshop, I learnt quite a few concepts. Firstly, I learnt that our program can receive command line arguments at runtime.
+We do this by modifying our main function and making it look the following way:
+
+int main (int argc, char *argv[])
+
+Here, ‘argc’ is the number of command line arguments and ‘argv’ is an array of all the command line arguments.
+
+Secondly, I learnt how we can use ‘extern’ keyword to use a global variable defined in one module in another module. To use this we define the variables in the header file first using the extern keyword.
+
+extern double g_taxrate;
+extern double g_dailydiscount;
+
+Once we are done with this, we define the variables again in the cpp file.
+
+double g_taxrate;
+double g_dailydiscount;
+
+I used the extern keyword here as I wanted the variable to be shared by another module as well. If I were to use internal linkage here instead by using the ‘static’ keyword, I wouldn’t have been able to use the variables in other modules as they would be independent to the original module itself.
+
+Thirdly, I learn how to use static variables in my program. Static variables are basically variables which last for the full lifetime of the program or function. I used the static keyword to create a counter which tracks the number of data items printed by the display function.
+
+static int counter = 1;
+
+As far as the changes to the code from part 1 to part 2 are concerned, I did not make any changes as I had completed the second part straight away. However, if I would’ve had to make changes it would just be adding destructor to deallocate dynamically allocated memory, allocating memory for the c strings and adding some minute changes to the read function.
