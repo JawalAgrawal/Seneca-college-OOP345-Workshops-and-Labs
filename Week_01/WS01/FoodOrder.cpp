@@ -9,7 +9,7 @@ I have done all the coding by myself and only copied the code that my professor 
 *****************************************************************************
 */
 
-#include "FoodOrder.h"
+#include "foodorder.h"
 #include <string>
 #include <iostream>
 #include <cstring>
@@ -17,8 +17,8 @@ I have done all the coding by myself and only copied the code that my professor 
 using namespace std;
 
 // Global Variables
-double g_taxrate;
-double g_dailydiscount;
+double g_taxrate {0};
+double g_dailydiscount {0};
 
 namespace sdds {
     FoodOrder::FoodOrder() {
@@ -72,7 +72,7 @@ namespace sdds {
     // Displays data
     void FoodOrder::display() const {
         // Creating a static variable in memory so that it lasts for the lifetime of this function
-        static int counter = 1;
+        static int counter {1};
 
         // Only printing if the customer name exists
         if (customerName != nullptr) {
