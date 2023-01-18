@@ -35,6 +35,8 @@ namespace sdds {
     public:
         FoodOrder();
         ~FoodOrder();
+        FoodOrder(const FoodOrder& foodOrder);
+        FoodOrder& operator=(const FoodOrder& foodOrder);
 
         // Reads a line in the text file and stores data in class
         std::istream& read(std::istream& is);

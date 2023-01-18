@@ -32,4 +32,34 @@ Thirdly, I learn how to use static variables in my program. Static variables are
 
 static int counter = 1;
 
-As far as the changes to the code from part 1 to part 2 are concerned, I did not make any changes as I had completed the second part straight away. However, if I would’ve had to make changes it would just be adding destructor to deallocate dynamically allocated memory, allocating memory for the c strings and adding some minute changes to the read function.
+In order to upgrade the program to support dynamic memory, I had to make multiple changes in my code. Firstly, I had to allocate dynamic memory for strings in the constructor and the read function and then had to create a destructor for deleting dynamically allocated memory. After that, I had to implement the rule of three in my code in order to prevent memory leaks from copying.
+The implementation for the rule of three is as follows:
+FoodOrder::FoodOrder(const FoodOrder& foodOrder) {
+        *this = foodOrder;
+    }
+
+FoodOrder& FoodOrder::operator=(const FoodOrder& foodOrder) {
+    if (this != &foodOrder) {
+        foodPrice = foodOrder.foodPrice;
+        dailySpecial = foodOrder.dailySpecial;
+
+        if (foodOrder.customerName != nullptr) {
+            customerName = new char[strlen(foodOrder.customerName) + 1];
+            strcpy(customerName, foodOrder.customerName);
+        } else {
+            customerName = nullptr;
+        }
+
+        if (foodOrder.foodDescription != nullptr) {
+            foodDescription = new char[strlen(foodOrder.foodDescription) + 1];
+            strcpy(customerName, foodOrder.foodDescription);
+        } else {
+            foodDescription = nullptr;
+        }
+
+    } else {
+        customerName = nullptr;
+        foodDescription = nullptr;
+    }
+    return *this;
+}

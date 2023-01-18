@@ -29,6 +29,36 @@ namespace sdds {
         deallocate();
     }
 
+    FoodOrder::FoodOrder(const FoodOrder& foodOrder) {
+        *this = foodOrder;
+    }
+
+    FoodOrder& FoodOrder::operator=(const FoodOrder& foodOrder) {
+        if (this != &foodOrder) {
+            foodPrice = foodOrder.foodPrice;
+            dailySpecial = foodOrder.dailySpecial;
+
+            if (foodOrder.customerName != nullptr) {
+                customerName = new char[strlen(foodOrder.customerName) + 1];
+                strcpy(customerName, foodOrder.customerName);
+            } else {
+                customerName = nullptr;
+            }
+
+            if (foodOrder.foodDescription != nullptr) {
+                foodDescription = new char[strlen(foodOrder.foodDescription) + 1];
+                strcpy(customerName, foodOrder.foodDescription);
+            } else {
+                foodDescription = nullptr;
+            }
+
+        } else {
+            customerName = nullptr;
+            foodDescription = nullptr;
+        }
+        return *this;
+    }
+
     // Reads a line in the text file and stores data in class
     std::istream& FoodOrder::read(std::istream& is) {
         if (is) {
