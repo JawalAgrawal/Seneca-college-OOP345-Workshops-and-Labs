@@ -20,9 +20,6 @@ using namespace std;
 double g_taxrate {0};
 double g_dailydiscount {0};
 
-// Creating a static variable in memory so that it lasts for the lifetime of this function
-static int counter {1};
-
 namespace sdds {
     FoodOrder::FoodOrder() {
         setEmpty();
@@ -64,7 +61,6 @@ namespace sdds {
                     dailySpecial = true;
                 }
             } else {
-                cout << setw(2) << left << counter << ". " << "No Order" << endl;
                 setEmpty();
             }
 
@@ -74,6 +70,8 @@ namespace sdds {
 
     // Displays data
     void FoodOrder::display() const {
+        // Creating a static variable in memory so that it lasts for the lifetime of this function
+        static int counter {1};
         // Only printing if the customer name exists
         if (customerName != nullptr) {
             cout
@@ -90,6 +88,8 @@ namespace sdds {
                 cout << endl;
             }
 
+        } else {
+            cout << setw(2) << left << counter << ". " << "No Order" << endl;
         }
         counter++;
     }

@@ -69,19 +69,19 @@ include CMakeFiles/WS01.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/WS01.dir/flags.make
 
-CMakeFiles/WS01.dir/w1_p1.cpp.o: CMakeFiles/WS01.dir/flags.make
-CMakeFiles/WS01.dir/w1_p1.cpp.o: /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p1.cpp
-CMakeFiles/WS01.dir/w1_p1.cpp.o: CMakeFiles/WS01.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/WS01.dir/w1_p1.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WS01.dir/w1_p1.cpp.o -MF CMakeFiles/WS01.dir/w1_p1.cpp.o.d -o CMakeFiles/WS01.dir/w1_p1.cpp.o -c /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p1.cpp
+CMakeFiles/WS01.dir/w1_p2.cpp.o: CMakeFiles/WS01.dir/flags.make
+CMakeFiles/WS01.dir/w1_p2.cpp.o: /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p2.cpp
+CMakeFiles/WS01.dir/w1_p2.cpp.o: CMakeFiles/WS01.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/WS01.dir/w1_p2.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/WS01.dir/w1_p2.cpp.o -MF CMakeFiles/WS01.dir/w1_p2.cpp.o.d -o CMakeFiles/WS01.dir/w1_p2.cpp.o -c /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p2.cpp
 
-CMakeFiles/WS01.dir/w1_p1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WS01.dir/w1_p1.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p1.cpp > CMakeFiles/WS01.dir/w1_p1.cpp.i
+CMakeFiles/WS01.dir/w1_p2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/WS01.dir/w1_p2.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p2.cpp > CMakeFiles/WS01.dir/w1_p2.cpp.i
 
-CMakeFiles/WS01.dir/w1_p1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WS01.dir/w1_p1.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p1.cpp -o CMakeFiles/WS01.dir/w1_p1.cpp.s
+CMakeFiles/WS01.dir/w1_p2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/WS01.dir/w1_p2.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/w1_p2.cpp -o CMakeFiles/WS01.dir/w1_p2.cpp.s
 
 CMakeFiles/WS01.dir/FoodOrder.cpp.o: CMakeFiles/WS01.dir/flags.make
 CMakeFiles/WS01.dir/FoodOrder.cpp.o: /Users/aryan-khurana/Desktop/Seneca-college-OOP345-Workshops-and-Labs/Week_01/WS01/FoodOrder.cpp
@@ -99,13 +99,13 @@ CMakeFiles/WS01.dir/FoodOrder.cpp.s: cmake_force
 
 # Object files for target WS01
 WS01_OBJECTS = \
-"CMakeFiles/WS01.dir/w1_p1.cpp.o" \
+"CMakeFiles/WS01.dir/w1_p2.cpp.o" \
 "CMakeFiles/WS01.dir/FoodOrder.cpp.o"
 
 # External object files for target WS01
 WS01_EXTERNAL_OBJECTS =
 
-WS01: CMakeFiles/WS01.dir/w1_p1.cpp.o
+WS01: CMakeFiles/WS01.dir/w1_p2.cpp.o
 WS01: CMakeFiles/WS01.dir/FoodOrder.cpp.o
 WS01: CMakeFiles/WS01.dir/build.make
 WS01: CMakeFiles/WS01.dir/link.txt

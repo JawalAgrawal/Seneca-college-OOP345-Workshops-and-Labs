@@ -153,29 +153,29 @@ FoodOrder.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/WS01.dir/build.make CMakeFiles/WS01.dir/FoodOrder.cpp.s
 .PHONY : FoodOrder.cpp.s
 
-w1_p1.o: w1_p1.cpp.o
-.PHONY : w1_p1.o
+w1_p2.o: w1_p2.cpp.o
+.PHONY : w1_p2.o
 
 # target to build an object file
-w1_p1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WS01.dir/build.make CMakeFiles/WS01.dir/w1_p1.cpp.o
-.PHONY : w1_p1.cpp.o
+w1_p2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WS01.dir/build.make CMakeFiles/WS01.dir/w1_p2.cpp.o
+.PHONY : w1_p2.cpp.o
 
-w1_p1.i: w1_p1.cpp.i
-.PHONY : w1_p1.i
+w1_p2.i: w1_p2.cpp.i
+.PHONY : w1_p2.i
 
 # target to preprocess a source file
-w1_p1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WS01.dir/build.make CMakeFiles/WS01.dir/w1_p1.cpp.i
-.PHONY : w1_p1.cpp.i
+w1_p2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WS01.dir/build.make CMakeFiles/WS01.dir/w1_p2.cpp.i
+.PHONY : w1_p2.cpp.i
 
-w1_p1.s: w1_p1.cpp.s
-.PHONY : w1_p1.s
+w1_p2.s: w1_p2.cpp.s
+.PHONY : w1_p2.s
 
 # target to generate assembly for a file
-w1_p1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WS01.dir/build.make CMakeFiles/WS01.dir/w1_p1.cpp.s
-.PHONY : w1_p1.cpp.s
+w1_p2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WS01.dir/build.make CMakeFiles/WS01.dir/w1_p2.cpp.s
+.PHONY : w1_p2.cpp.s
 
 # Help Target
 help:
@@ -189,9 +189,9 @@ help:
 	@echo "... FoodOrder.o"
 	@echo "... FoodOrder.i"
 	@echo "... FoodOrder.s"
-	@echo "... w1_p1.o"
-	@echo "... w1_p1.i"
-	@echo "... w1_p1.s"
+	@echo "... w1_p2.o"
+	@echo "... w1_p2.i"
+	@echo "... w1_p2.s"
 .PHONY : help
 
 
