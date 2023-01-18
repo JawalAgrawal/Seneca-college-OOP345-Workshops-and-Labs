@@ -47,14 +47,11 @@ namespace sdds {
 
             if (foodOrder.foodDescription != nullptr) {
                 foodDescription = new char[strlen(foodOrder.foodDescription) + 1];
-                strcpy(customerName, foodOrder.foodDescription);
+                strcpy(foodDescription, foodOrder.foodDescription);
             } else {
                 foodDescription = nullptr;
             }
 
-        } else {
-            customerName = nullptr;
-            foodDescription = nullptr;
         }
         return *this;
     }
@@ -62,6 +59,9 @@ namespace sdds {
     // Reads a line in the text file and stores data in class
     std::istream& FoodOrder::read(std::istream& is) {
         if (is) {
+
+            // Deallocating before allocation so it doesnt overwrite
+            deallocate();
 
             // Reading the customer name
             char temp[256];
