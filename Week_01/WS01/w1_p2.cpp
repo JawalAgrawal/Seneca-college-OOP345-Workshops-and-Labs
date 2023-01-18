@@ -25,7 +25,7 @@ int main (int argc, char *argv[])
 
     // Printing the command line arguments
     for (int i = 0; i < argc; i++) {
-        std::cout << i + 1 << ": " << argv[i] << std::endl;
+        std::cout << "  " << i + 1 << ": " << argv[i] << std::endl;
     }
 
 
