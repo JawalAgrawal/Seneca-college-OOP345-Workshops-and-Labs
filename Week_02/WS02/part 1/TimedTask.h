@@ -26,7 +26,10 @@ namespace sdds {
         void stopClock();
 
         // This function will update the next time-record in the array
-        void addTask();
+        void addTask(const char* task);
+
+        // Initializes to empty state
+        void setEmpty();
     };
 
     // Should insert in the std::ostream object the records from the array
