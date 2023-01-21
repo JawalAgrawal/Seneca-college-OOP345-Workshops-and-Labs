@@ -4,4 +4,4 @@ project(part_1)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(part_1
-        w2_p1.cpp)
+        w2_p1.cpp ProteinDatabase.cpp TimedTask.cpp)
