@@ -6,16 +6,16 @@
 namespace sdds {
     struct Task {
         std::string taskName;
-        std::string unitOfTime;
-        std::chrono::duration<int> seconds_type;
+        std::string unitsOfTime;
+        std::chrono::steady_clock::duration duration;
     };
+
     class TimedTask {
     private:
         int numberOfRecordsStored;
-        std::chrono::time_point<std::chrono::steady_clock> taskStartTime;
-        std::chrono::time_point<std::chrono::steady_clock> taskEndTime;
+        std::chrono::steady_clock::time_point taskStartTime;
+        std::chrono::steady_clock::time_point taskEndTime;
         Task* taskArray;
-
     public:
         TimedTask();
 
@@ -26,14 +26,16 @@ namespace sdds {
         void stopClock();
 
         // This function will update the next time-record in the array
-        void addTask(const char* task);
+        void addTask(const char *task);
 
         // Initializes to empty state
         void setEmpty();
+
+        // Display function
+        std::ostream &display(std::ostream &os) const;
     };
 
-    // Should insert in the std::ostream object the records from the array
-    std::ostream& operator<<(std::ostream& os, const TimedTask& timedTask);
+    // This operator should insert in the std::ostream object the records from the array
+    std::ostream &operator<<(std::ostream &os, const TimedTask& timedTask);
 }
-
 #endif // SDDS_TIMEDTASK_H

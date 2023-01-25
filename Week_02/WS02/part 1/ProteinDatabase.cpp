@@ -1,6 +1,5 @@
 #include "ProteinDatabase.h"
 #include <iostream>
-#include <cstring>
 #include <fstream>
 using namespace std;
 
@@ -11,20 +10,36 @@ namespace sdds {
 
     // Populates the current object n
     ProteinDatabase::ProteinDatabase(const char* filename) {
-        // Buffer to read text into
-        string proteinSequence;
-        ifstream MyReadFile(filename);
+        string bufferText;
+        int index = 0;
 
-        // Use a while loop together with the getline() function to read the file line by line
-        while (getline (MyReadFile, proteinSequence)) {
-            // Checking to only read sequences and not the description
-            if (proteinSequence[0] != '>') {
-                cout << proteinSequence << endl;
+        // Creating a file pointer
+        ifstream inFile(filename);
+
+        // Reading the file and counting the number of protein sequences
+        while (inFile) {
+            char ch = inFile.get();
+            if (ch == '>') {
+                arrSize++;
             }
         }
 
-        // Close the file
-        MyReadFile.close();
+        // Reset the file pointer
+        inFile.clear();
+        inFile.seekg(0);
+
+        // Reading the file again and assigning values
+        // Dynamically allocating memory for array of strings
+        proteinSeqArr = new string[arrSize];
+
+        while (getline(inFile, bufferText)) {
+            if (bufferText[0] != '>') {
+                proteinSeqArr[index - 1] = bufferText;
+            } else {
+                index++;
+            }
+        }
+
     }
 
     // Deallocates dynamic memory
