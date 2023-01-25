@@ -7,9 +7,15 @@ namespace sdds {
     class ProteinDatabase {
     private:
         int arrSize;
+        // Array of strings
         std::string* proteinSeqArr;
     public:
+        // Default Constructor
         ProteinDatabase();
+
+        // Rule of three
+        ProteinDatabase(const ProteinDatabase& proteinDatabase);
+        ProteinDatabase& operator=(const ProteinDatabase& proteinDatabase);
 
         // Populates the current object
         ProteinDatabase(const char* filename);

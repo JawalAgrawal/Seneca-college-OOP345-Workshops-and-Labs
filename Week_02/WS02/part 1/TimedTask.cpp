@@ -1,5 +1,6 @@
 #include "TimedTask.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 namespace sdds {
@@ -19,35 +20,34 @@ namespace sdds {
 
     // This function will update the next time-record in the array
     void TimedTask::addTask(const char* task) {
-        static int taskArrIndex {0};
-        taskArray[taskArrIndex].taskName = task;
-        taskArray[taskArrIndex].unitsOfTime = "nanoseconds";
-        taskArray[taskArrIndex].duration = std::chrono::duration_cast<std::chrono::nanoseconds>(taskEndTime - taskStartTime);
-        taskArrIndex++;
+        if (numberOfRecordsStored < 20) {
+            taskArray[numberOfRecordsStored].taskName = task;
+            taskArray[numberOfRecordsStored].unitsOfTime = "nanoseconds";
+            taskArray[numberOfRecordsStored].duration = (taskEndTime - taskStartTime);
+        }
+
+        // Incrementing the number of records
+        numberOfRecordsStored++;
     }
 
     // Initializes to empty state
     void TimedTask::setEmpty() {
         numberOfRecordsStored = 0;
-        taskArray = nullptr;
-    }
-
-    // Display function
-    std::ostream& TimedTask::display(std::ostream& os) const {
-        cout << "Execution Times:" << endl;
-        cout << "--------------------------" << endl;
-
-        // Printing the data from the array
-        for (int i = 0; i < numberOfRecordsStored; i++) {
-             cout << taskArray[i].taskName << " " << taskArray[i].taskName << " " << taskArray[i].unitsOfTime << endl;
-        }
-
-        cout << "--------------------------" << endl;
-        return os;
     }
 
     // This operator should insert in the std::ostream object the records from the array
     std::ostream& operator<<(std::ostream& os, const TimedTask& timedTask) {
-        return timedTask.display(os);
+        os << "Execution Times:" << endl;
+        os << "--------------------------" << endl;
+
+        // Printing the data from the array
+        for (int i = 0; i < timedTask.numberOfRecordsStored; i++) {
+            os << left << setw(21) << timedTask.taskArray[i].taskName
+            << right << setw(13) << std::chrono::duration_cast<std::chrono::nanoseconds>(timedTask.taskArray[i].duration).count()
+            << " " << timedTask.taskArray[i].unitsOfTime << endl;
+        }
+
+        os << "--------------------------" << endl;
+        return os;
     }
 }

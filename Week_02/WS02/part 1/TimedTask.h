@@ -12,10 +12,10 @@ namespace sdds {
 
     class TimedTask {
     private:
-        int numberOfRecordsStored;
+        int numberOfRecordsStored{0};
         std::chrono::steady_clock::time_point taskStartTime;
         std::chrono::steady_clock::time_point taskEndTime;
-        Task* taskArray;
+        Task taskArray[20];
     public:
         TimedTask();
 
@@ -31,11 +31,8 @@ namespace sdds {
         // Initializes to empty state
         void setEmpty();
 
-        // Display function
-        std::ostream &display(std::ostream &os) const;
+        // This operator should insert in the std::ostream object the records from the array
+        friend std::ostream &operator<<(std::ostream &os, const TimedTask& timedTask);
     };
-
-    // This operator should insert in the std::ostream object the records from the array
-    std::ostream &operator<<(std::ostream &os, const TimedTask& timedTask);
 }
 #endif // SDDS_TIMEDTASK_H
