@@ -8,3 +8,35 @@ Date of completion    : 25 January 2023
 I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 *****************************************************************************
 */
+
+In this workshop, I learnt how to implement move semantics for a class with a resource by using move constructor and the move assignment operator. These operations were carried out by the use of RValue references. I also learnt about the rule of 5 through this. The move semantics implemented by me are given below. 
+ProteinDatabase::ProteinDatabase(ProteinDatabase&& proteinDatabase) noexcept {
+        *this = std::move(proteinDatabase);
+}
+
+ProteinDatabase& ProteinDatabase::operator=(ProteinDatabase&& proteinDatabase) noexcept {
+    if (this != &proteinDatabase) {
+        delete[] proteinSeqArr;
+        proteinSeqArr = proteinDatabase.proteinSeqArr;
+        proteinDatabase.proteinSeqArr = nullptr;
+        arrSize = proteinDatabase.arrSize;
+        proteinDatabase.arrSize = 0;
+    }
+
+    return *this;
+}
+
+Furthermore, I was also able to revise a lot of previous concepts such as the rule of three, implementing copying actions, reading from files and much more. Apart from that, I also learnt how to work with time in programs using the std::chrono library.
+
+In terms of my problems. I faced a problem in resetting the file pointer at first so that I could reread the file again.
+Previous Code:
+inFile.seekg(0);
+
+Corrected Code: 
+inFile.clear();
+inFile.seekg(0);
+
+I wasn’t using clear at first.  This is because, when reading the characters, the file pointer is hitting the EOF and marking that in the stream state. The stream state is not changed when doing the seekg() call and so the next read detectes that the EOF bit is set and returns without reading.
+
+In terms of the difference between move and copy semantics. We see that move is way faster.
+Copy constructor allows you to make a duplicate of the object which takes more time and more space as a result. However, move is used when an instance of a class with resources will no longer be referred to once it has been copied or assigned. We can basically move the objects resources to the ‘copy’ by copying or assigning the addresses of the classes resources instead of copying the resources themselves.
