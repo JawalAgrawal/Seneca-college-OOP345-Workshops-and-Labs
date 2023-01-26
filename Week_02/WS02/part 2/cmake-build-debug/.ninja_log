@@ -1,0 +1,8 @@
+# ninja log v5
+390	433	1674704929503395046	part_1	22e65b92cc58a72f
+2	390	1674704929458816532	CMakeFiles/part_1.dir/ProteinDatabase.cpp.o	cb2ef2ca159f2b69
+6	424	1674702495240609795	CMakeFiles/part_1.dir/TimedTask.cpp.o	2d0813c524f9b6f2
+3	383	1674708524366405741	CMakeFiles/part_1.dir/TimedTask.cpp.o	14274ae8d0c49884
+1	343	1674708571182128843	CMakeFiles/part_1.dir/w2_p2.cpp.o	d382c9fd8552cba8
+1	358	1674708571198236373	CMakeFiles/part_1.dir/ProteinDatabase.cpp.o	eaa97bc608903a44
+358	397	1674708571238747280	part_1	bc0feadf6269b5ca

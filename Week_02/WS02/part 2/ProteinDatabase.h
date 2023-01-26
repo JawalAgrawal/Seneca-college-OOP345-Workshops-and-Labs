@@ -1,10 +1,10 @@
 /*
 *****************************************************************************
-                              TimedTask.h
+                              ProteinDatabase.h
 Full Name  : Aryan Khurana
 Student ID#: 145282216
 Email      : akhurana22@myseneca.ca
-Date of completion    : 14 January 2023
+Date of completion    : 25 January 2023
 I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 *****************************************************************************
 */
@@ -26,7 +26,10 @@ namespace sdds {
 
         // Rule of five
         ProteinDatabase(const ProteinDatabase& proteinDatabase);
+        ProteinDatabase(ProteinDatabase&& src) noexcept;
         ProteinDatabase& operator=(const ProteinDatabase& proteinDatabase);
+        ProteinDatabase& operator=(ProteinDatabase&& proteinDatabase) noexcept;
+
         // Populates the current object
         ProteinDatabase(const char* filename);
 

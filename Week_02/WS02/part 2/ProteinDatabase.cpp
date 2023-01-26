@@ -42,6 +42,22 @@ namespace sdds {
         return *this;
     }
 
+    ProteinDatabase::ProteinDatabase(ProteinDatabase&& proteinDatabase) noexcept {
+        *this = std::move(proteinDatabase);
+    }
+
+    ProteinDatabase& ProteinDatabase::operator=(ProteinDatabase&& proteinDatabase) noexcept {
+        if (this != &proteinDatabase) {
+            delete[] proteinSeqArr;
+            proteinSeqArr = proteinDatabase.proteinSeqArr;
+            proteinDatabase.proteinSeqArr = nullptr;
+            arrSize = proteinDatabase.arrSize;
+            proteinDatabase.arrSize = 0;
+        }
+
+        return *this;
+    }
+
     // Populates the current object n
     ProteinDatabase::ProteinDatabase(const char* filename) {
         string bufferText{};
