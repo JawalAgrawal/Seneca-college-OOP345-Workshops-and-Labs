@@ -15,6 +15,8 @@ I have done all the coding by myself and only copied the code that my professor 
 #include <iostream>
 #include <chrono>
 
+const int MAXIMUM_TASKS = 10;
+
 namespace sdds {
     struct Task {
         std::string taskName {};
@@ -27,7 +29,7 @@ namespace sdds {
         int numberOfRecordsStored {0};
         std::chrono::steady_clock::time_point taskStartTime {};
         std::chrono::steady_clock::time_point taskEndTime {};
-        Task taskArray[10];
+        Task taskArray[MAXIMUM_TASKS];
     public:
         TimedTask();
 

@@ -15,7 +15,7 @@ I have done all the coding by myself and only copied the code that my professor 
 using namespace std;
 
 namespace sdds {
-    // Rule of three
+    // Rule of five
     ProteinDatabase::ProteinDatabase(const ProteinDatabase& proteinDatabase) {
         *this = proteinDatabase;
     }
@@ -60,7 +60,7 @@ namespace sdds {
 
     // Populates the current object n
     ProteinDatabase::ProteinDatabase(const char* filename) {
-        string bufferText{};
+        string bufferText{}, bufferText2{};
         size_t index {0};
 
         // Creating a file pointer
@@ -68,11 +68,9 @@ namespace sdds {
 
         if (inFile) {
             // Reading the file and counting the number of protein sequences
-            while (inFile) {
-                char ch = inFile.get();
-                if (ch == '>') {
-                    arrSize++;
-                }
+            inFile.ignore(1000, '\n');
+            while (getline(inFile, bufferText2, '>')) {
+                arrSize++;
             }
 
             // Reset the file pointer
