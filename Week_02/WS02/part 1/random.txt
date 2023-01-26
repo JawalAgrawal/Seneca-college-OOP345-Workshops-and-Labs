@@ -1,0 +1,47 @@
+Script started, file is output_p1_stud.txt
+==215525== Memcheck, a memory error detector
+==215525== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==215525== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==215525== Command: ws proteinsequences.txt
+==215525== 
+Begin Testing the Program!
+--------------------------
+
+Command Line:
+--------------------------
+  1: ws
+  2: proteinsequences.txt
+--------------------------
+
+  0-arg Constructor - a.size =       0 strings ->  (a) String     1: []
+                                                   (a) String   100: []
+                                                   (a) String  1000: []
+                                                   (a) String  last: []
+                                                   (a) String last+: []
+
+  1-arg Constructor - b.size =   23012 strings ->  (b) String     1: [MGARHLRYGREAGMNKTEIP]
+                                                   (b) String   100: [MSTPAPGPRSGGELLVAQLQ]
+                                                   (b) String  1000: [MPQTLEVIATLLFAVAVLHT]
+                                                   (b) String  last: [MAKVALITGITGQDGAYLAE]
+                                                   (b) String last+: []
+
+  Copy Constructor  - c.size =   23012 strings ->  (c) String     1: [MGARHLRYGREAGMNKTEIP]
+                                                   (c) String   100: [MSTPAPGPRSGGELLVAQLQ]
+                                                   (c) String  1000: [MPQTLEVIATLLFAVAVLHT]
+                                                   (c) String  last: [MAKVALITGITGQDGAYLAE]
+                                                   (c) String last+: []
+
+  Copy Assignment   - a.size =   23012 strings ->  (a) String     1: [MGARHLRYGREAGMNKTEIP]
+                                                   (a) String   100: [MSTPAPGPRSGGELLVAQLQ]
+                                                   (a) String  1000: [MPQTLEVIATLLFAVAVLHT]
+                                                   (a) String  last: [MAKVALITGITGQDGAYLAE]
+                                                   (a) String last+: []
+
+Execution Times:
+--------------------------
+  0-arg Constructor         557890 nanoseconds
+  1-arg Constructor    21219325818 nanoseconds
+  Copy Constructor       132452219 nanoseconds
+  Copy Assignment        136575938 nanoseconds
+  Destructor             156073058 nanoseconds
+--------------------------

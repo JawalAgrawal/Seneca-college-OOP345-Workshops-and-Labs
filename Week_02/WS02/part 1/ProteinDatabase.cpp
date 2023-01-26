@@ -4,10 +4,6 @@
 using namespace std;
 
 namespace sdds {
-    ProteinDatabase::ProteinDatabase() {
-        setEmpty();
-    }
-
     // Rule of three
     ProteinDatabase::ProteinDatabase(const ProteinDatabase& proteinDatabase) {
         *this = proteinDatabase;
@@ -18,6 +14,7 @@ namespace sdds {
         if (this != &proteinDatabase) {
             // Deallocating previously allocated memory
             delete[] proteinSeqArr;
+            proteinSeqArr = nullptr;
 
             // Shallow Copy
             arrSize = proteinDatabase.arrSize;
@@ -25,11 +22,9 @@ namespace sdds {
             // Deep Copy
             if (proteinDatabase.proteinSeqArr != nullptr) {
                 proteinSeqArr = new string[arrSize];
-                for (int i = 0; i < arrSize; i++) {
+                for (size_t i = 0; i < arrSize; i++) {
                     proteinSeqArr[i] = proteinDatabase.proteinSeqArr[i];
                 }
-            } else {
-                proteinSeqArr = nullptr;
             }
 
         }
@@ -40,7 +35,7 @@ namespace sdds {
     // Populates the current object n
     ProteinDatabase::ProteinDatabase(const char* filename) {
         string bufferText{};
-        int index {0};
+        size_t index {0};
 
         // Creating a file pointer
         ifstream inFile(filename);
@@ -62,11 +57,12 @@ namespace sdds {
             // Dynamically allocating memory for array of strings
             proteinSeqArr = new string[arrSize];
 
+            inFile.ignore(1000, '\n');
             while (getline(inFile, bufferText)) {
                 if (bufferText[0] != '>') {
-                    proteinSeqArr[index - 1] += bufferText;
+                    proteinSeqArr[index] += bufferText;
                 } else {
-                    index++;
+                    if (index < arrSize) index++;
                 }
             }
         }
@@ -90,11 +86,5 @@ namespace sdds {
         }
 
         return proteinSeqArr[index];
-    }
-
-    // Initializes to empty state
-    void ProteinDatabase::setEmpty() {
-        arrSize = 0;
-        proteinSeqArr = nullptr;
     }
 }

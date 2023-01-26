@@ -6,12 +6,12 @@
 namespace sdds {
     class ProteinDatabase {
     private:
-        int arrSize;
+        size_t arrSize {0};
         // Array of strings
-        std::string* proteinSeqArr;
+        std::string* proteinSeqArr {};
     public:
         // Default Constructor
-        ProteinDatabase();
+        ProteinDatabase() = default;
 
         // Rule of three
         ProteinDatabase(const ProteinDatabase& proteinDatabase);
@@ -28,9 +28,6 @@ namespace sdds {
 
         // Returns a copy of the protein sequence at the index received as the function parameter
         std::string operator[](size_t index) const;
-
-        // Initializes to empty state
-        void setEmpty();
     };
 }
 

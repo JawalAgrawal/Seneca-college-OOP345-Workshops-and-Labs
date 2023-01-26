@@ -20,14 +20,15 @@ namespace sdds {
 
     // This function will update the next time-record in the array
     void TimedTask::addTask(const char* task) {
-        if (numberOfRecordsStored < 20) {
-            taskArray[numberOfRecordsStored].taskName = task;
-            taskArray[numberOfRecordsStored].unitsOfTime = "nanoseconds";
-            taskArray[numberOfRecordsStored].duration = (taskEndTime - taskStartTime);
+        if (numberOfRecordsStored < 10) {
+            if (task) {
+                taskArray[numberOfRecordsStored].taskName = task;
+                taskArray[numberOfRecordsStored].unitsOfTime = "nanoseconds";
+                taskArray[numberOfRecordsStored].duration = std::chrono::duration_cast<std::chrono::nanoseconds>(taskEndTime - taskStartTime);
+                // Incrementing the number of records
+                numberOfRecordsStored++;
+            }
         }
-
-        // Incrementing the number of records
-        numberOfRecordsStored++;
     }
 
     // Initializes to empty state
@@ -37,13 +38,14 @@ namespace sdds {
 
     // This operator should insert in the std::ostream object the records from the array
     std::ostream& operator<<(std::ostream& os, const TimedTask& timedTask) {
+        os << "--------------------------" << endl;
         os << "Execution Times:" << endl;
         os << "--------------------------" << endl;
 
         // Printing the data from the array
         for (int i = 0; i < timedTask.numberOfRecordsStored; i++) {
             os << left << setw(21) << timedTask.taskArray[i].taskName
-            << right << setw(13) << std::chrono::duration_cast<std::chrono::nanoseconds>(timedTask.taskArray[i].duration).count()
+            << right << setw(13) << timedTask.taskArray[i].duration.count()
             << " " << timedTask.taskArray[i].unitsOfTime << endl;
         }
 

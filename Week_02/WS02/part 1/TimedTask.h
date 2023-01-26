@@ -2,20 +2,21 @@
 #define SDDS_TIMEDTASK_H
 
 #include <iostream>
+#include <chrono>
 
 namespace sdds {
     struct Task {
-        std::string taskName;
-        std::string unitsOfTime;
-        std::chrono::steady_clock::duration duration;
+        std::string taskName {};
+        std::string unitsOfTime {};
+        std::chrono::steady_clock::duration duration {};
     };
 
     class TimedTask {
     private:
-        int numberOfRecordsStored{0};
-        std::chrono::steady_clock::time_point taskStartTime;
-        std::chrono::steady_clock::time_point taskEndTime;
-        Task taskArray[20];
+        int numberOfRecordsStored {0};
+        std::chrono::steady_clock::time_point taskStartTime {};
+        std::chrono::steady_clock::time_point taskEndTime {};
+        Task taskArray[10];
     public:
         TimedTask();
 
