@@ -16,10 +16,12 @@ I have done all the coding by myself and only copied the code that my professor 
 
 namespace sdds {
     class ProteinDatabase {
+
     private:
         size_t arrSize {0};
         // Array of strings
         std::string* proteinSeqArr {};
+
     public:
         // Default Constructor
         ProteinDatabase() = default;

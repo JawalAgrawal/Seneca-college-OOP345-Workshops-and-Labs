@@ -47,10 +47,14 @@ namespace sdds {
     }
 
     ProteinDatabase& ProteinDatabase::operator=(ProteinDatabase&& proteinDatabase) noexcept {
+        // Checking whether it is the same object
         if (this != &proteinDatabase) {
+            // Moving protein sequence array
             delete[] proteinSeqArr;
             proteinSeqArr = proteinDatabase.proteinSeqArr;
             proteinDatabase.proteinSeqArr = nullptr;
+
+            // Moving the array size
             arrSize = proteinDatabase.arrSize;
             proteinDatabase.arrSize = 0;
         }
@@ -66,6 +70,7 @@ namespace sdds {
         // Creating a file pointer
         ifstream inFile(filename);
 
+        // Checking if the file is not bad
         if (inFile) {
             // Reading the file and counting the number of protein sequences
             inFile.ignore(1000, '\n');
@@ -77,10 +82,10 @@ namespace sdds {
             inFile.clear();
             inFile.seekg(0);
 
-            // Reading the file again and assigning values
             // Dynamically allocating memory for array of strings
             proteinSeqArr = new string[arrSize];
 
+            // Reading the file again and assigning values
             inFile.ignore(1000, '\n');
             while (getline(inFile, bufferText)) {
                 if (bufferText[0] != '>') {
