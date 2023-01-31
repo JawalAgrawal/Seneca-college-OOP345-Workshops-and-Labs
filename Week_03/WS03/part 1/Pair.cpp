@@ -10,7 +10,21 @@ I have done all the coding by myself and only copied the code that my professor 
 */
 
 #include "Pair.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
 namespace sdds {
+    Pair::Pair() {};
 
+    // Display Function
+    std::ostream& Pair::display(std::ostream& os) const {
+        os << setw(20) << right << m_key << ": " << left << m_value;
+        return os;
+    }
+
+    // Insertion operator overload
+    std::ostream& operator<<(std::ostream& os, const Pair& pair) {
+        return pair.display(os);
+    }
 }

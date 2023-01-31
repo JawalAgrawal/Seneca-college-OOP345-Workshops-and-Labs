@@ -18,16 +18,11 @@ namespace sdds {
     template <typename T, unsigned int CAPACITY>
     class Collection {
     private:
-        T items[CAPACITY];
-        T dummyObject;
+        T items[CAPACITY] {};
+        T dummyObject {};
         inline static int elementsInCollection{};
     public:
-        // Default constructor to set values to safe empty state
-        Collection() {
-            for (int i = 0; i < CAPACITY; i++) {
-                items[i] = 0;
-            }
-        }
+        Collection() {}
 
         // A query that returns the current number of elements in the collection
         int size() const {
@@ -64,6 +59,8 @@ namespace sdds {
         // Returns a copy of the element stored in the collection at the specified index
         T& operator[](int index) const {
             T result{};
+
+            // Deciding the return value
             if (index < 0 || index > CAPACITY) {
                 result = dummyObject;
             } else {
