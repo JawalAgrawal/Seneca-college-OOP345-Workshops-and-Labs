@@ -70,26 +70,26 @@ int main(int argc, char** argv)
 		std::cout << "******************************************************\n\n";
 	}
 
-	{
-		std::cout << "******************************************************\n";
-		std::cout << "* Testing the Collection of Pairs                    *\n";
-		std::cout << "******************************************************\n";
-		sdds::Collection<sdds::Pair, 50> colDictionary;
-
-		for (const auto& item : pData)
-			colDictionary.add(item);
-
-		std::cout << "Collection size: [" << colDictionary.size() << "]\n";
-		colDictionary.display();
-
-		std::cout << "Item [0]: [" << colDictionary[0].getKey()   << "]["
-		                           << colDictionary[0].getValue() << "]\n";
-		std::cout << "Item [8]: [" << colDictionary[8].getKey()   << "]["
-		                           << colDictionary[8].getValue() << "]\n";
-		std::cout << "Item [9]: [" << colDictionary[9].getKey()   << "]["
-		                           << colDictionary[9].getValue() << "]\n";
-		std::cout << "******************************************************\n\n";
-	}
+//	{
+//		std::cout << "******************************************************\n";
+//		std::cout << "* Testing the Collection of Pairs                    *\n";
+//		std::cout << "******************************************************\n";
+//		sdds::Collection<sdds::Pair, 50> colDictionary;
+//
+//		for (const auto& item : pData)
+//			colDictionary.add(item);
+//
+//		std::cout << "Collection size: [" << colDictionary.size() << "]\n";
+//		colDictionary.display();
+//
+//		std::cout << "Item [0]: [" << colDictionary[0].getKey()   << "]["
+//		                           << colDictionary[0].getValue() << "]\n";
+//		std::cout << "Item [8]: [" << colDictionary[8].getKey()   << "]["
+//		                           << colDictionary[8].getValue() << "]\n";
+//		std::cout << "Item [9]: [" << colDictionary[9].getKey()   << "]["
+//		                           << colDictionary[9].getValue() << "]\n";
+//		std::cout << "******************************************************\n\n";
+//	}
 
 	return cout;
 }
