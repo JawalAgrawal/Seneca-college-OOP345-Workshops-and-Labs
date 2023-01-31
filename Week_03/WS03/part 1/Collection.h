@@ -12,16 +12,20 @@ I have done all the coding by myself and only copied the code that my professor 
 #ifndef SDDS_COLLECTION_H
 #define SDDS_COLLECTION_H
 
+#include "Pair.h"
 #include <iostream>
 
 namespace sdds {
-    template <typename T, unsigned int CAPACITY>
+    template <typename T, size_t CAPACITY>
     class Collection {
+
     private:
         T items[CAPACITY] {};
         T dummyObject {};
-        inline static int elementsInCollection{};
+        inline static int elementsInCollection{ 0 };
+
     public:
+        // Default Constructor
         Collection() {}
 
         // A query that returns the current number of elements in the collection
@@ -41,33 +45,35 @@ namespace sdds {
             }
 
             os << "----------------------" << std::endl;
+
             return os;
         }
 
         // A mutator that adds a copy of the parameter to the collection if there still is capacity
         bool add(const T& item) {
             bool result = false;
+
+            // Checking whether there is space for a new element to be added
             if (elementsInCollection < CAPACITY) {
                 items[elementsInCollection] = item;
+
                 // Incrementing the number of elements if an element was added
                 elementsInCollection++;
+
+                result = true;
             }
 
             return result;
         }
 
         // Returns a copy of the element stored in the collection at the specified index
-        T& operator[](int index) const {
-            T result{};
-
-            // Deciding the return value
-            if (index < 0 || index > CAPACITY) {
-                result = dummyObject;
-            } else {
-                result = items[index];
+        T& operator[](int index) {
+            // Returning the item at the particular index if the index is valid
+            if (index >= 0 && index < CAPACITY) {
+                return items[index];
             }
 
-            return result;
+            return dummyObject;
         }
     };
 }
