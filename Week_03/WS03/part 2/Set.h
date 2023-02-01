@@ -12,10 +12,10 @@ I have done all the coding by myself and only copied the code that my professor 
 #ifndef SDDS_SET_H
 #define SDDS_SET_H
 
+namespace sdds {
+    class Set {
 
-class Set {
-
-};
-
+    };
+}
 
 #endif // SDDS_SET_H
