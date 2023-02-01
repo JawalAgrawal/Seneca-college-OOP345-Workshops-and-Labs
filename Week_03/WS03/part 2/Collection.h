@@ -20,7 +20,7 @@ namespace sdds {
     class Collection {
     private:
         T items[CAPACITY] {};
-        static T dummyObject {};
+        inline static T dummyObject {};
         int elementsInCollection{ 0 };
 
     public:
@@ -79,12 +79,12 @@ namespace sdds {
         }
     };
 
-    template<typename T, int CAPACITY>
-    T Collection<T, CAPACITY>::dummyObject;
+//    template<typename T, int CAPACITY>
+//    T Collection<T, CAPACITY>::dummyObject;
 
     // Specialize the dummy object when type T = Pair and CAPACITY = 100
-    template<>
-    Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
+//    template<>
+//    Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
 
 //    template<typename T, int CAPACITY>
 //    T Collection<T, CAPACITY>::dummyObject {};

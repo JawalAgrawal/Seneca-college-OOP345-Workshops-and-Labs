@@ -147,7 +147,6 @@ int main(int argc, char** argv)
 		                            << (*setDictionary)[1].getValue()  << "]\n";
 		std::cout << "Item [4]: ["  << (*setDictionary)[4].getKey()    << "]["
 		                            << (*setDictionary)[4].getValue()  << "]\n";
-        std::cout << (*setDictionary)[11] << std::endl;
 		std::cout << "Item [11]: [" << (*setDictionary)[11].getKey()   << "]["
 		                            << (*setDictionary)[11].getValue() << "]\n";
 		std::cout << "******************************************************\n\n";

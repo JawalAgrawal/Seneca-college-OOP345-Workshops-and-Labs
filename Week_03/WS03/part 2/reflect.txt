@@ -1,0 +1,37 @@
+Through this workshop, I learnt class templating, template specialization and using templates with inheritance involved. I also learnt that we only have header files for template classes because unlike regular code, template code is generated at compile time rather than runtime.
+Having one header file and including it in multiple source files allows the code to be compiled separately in each file, which can lead to faster build time. The header file acts as an interface between the class template in multiple parts of the program without having to recompile the entire codebase every time the template is changed.
+
+I have added two additional member functions to the Pair module. I added the ‘display()’ function which basically prints the collection data into the output stream and the ‘==’ operator overload which basically compares two dictionary items. It compares whether the keys of both the items are equal and returns true if they are.
+
+// Insertion operator overload
+std::ostream& operator<<(std::ostream& os, const Pair& pair) {
+    return pair.display(os);
+}
+
+// == operator overload
+bool Pair::operator==(const Pair& pair) const {
+    bool result = false;
+
+    // Checking whether the keys are equal
+    if (m_key == pair.m_key) {
+        result = true;
+    }
+
+    return result;
+}
+
+Class variables are defined outside the class definition because the variables are not really a part of the individual class objects. The class variable is like a global variable for all the instances of the class. If you try to define class variables as attributes, you will run into an error.
+
+Defining outside the class:
+In Class definition: static int varName;
+Outside Class definition:
+template<typename T, int N>
+int ClassName<T, N>::varName = 0;
+
+Defining inside the class using ‘inline’ keyword: inline static int varName = 0;
+
+We have specialized the ‘add()’ function because we cannot compare two double numbers accurately due to their precision. For instance) 0.0000000001 and 0.00000000001 are almost the same and the only difference between them is the precision. We used the ‘std::fabs()’ function take care of this problem.
+========== To Do ==========
+
+In terms of difficulty, I had to get help from my professor to understand how to specialize templates for classes and functions. The following is the way I managed to do that.
+========== To Do ============
