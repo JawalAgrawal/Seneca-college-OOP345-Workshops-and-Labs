@@ -27,6 +27,9 @@ namespace sdds {
 
         // Display Function
         std::ostream& display(std::ostream& os) const;
+
+        // == Operator Overload
+        bool operator==(const Pair& pair) const;
     };
 
     // Insertion operator overload

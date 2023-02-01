@@ -18,15 +18,17 @@ I have done all the coding by myself and only copied the code that my professor 
 namespace sdds {
     template <typename T, int CAPACITY>
     class Collection {
-
     private:
         T items[CAPACITY] {};
-        T dummyObject {};
-        inline static int elementsInCollection{ 0 };
+        static T dummyObject {};
+        int elementsInCollection{ 0 };
 
     public:
         // Default Constructor
         Collection() {}
+
+        // Virtual Destructor to call derived class destructor first
+        virtual ~Collection() {}
 
         // A query that returns the current number of elements in the collection
         int size() const {
@@ -34,7 +36,7 @@ namespace sdds {
         }
 
         // Inserts into the stream all items from the collection
-        std::ostream& display(std::ostream& os = std::cout) const {
+        virtual std::ostream& display(std::ostream& os = std::cout) const {
             os << "----------------------" << std::endl;
             os << "| Collection Content |" << std::endl;
             os << "----------------------" << std::endl;
@@ -50,7 +52,7 @@ namespace sdds {
         }
 
         // A mutator that adds a copy of the parameter to the collection if there still is capacity
-        bool add(const T& item) {
+        virtual bool add(const T& item) {
             bool result = false;
 
             // Checking whether there is space for a new element to be added
@@ -76,6 +78,20 @@ namespace sdds {
             return dummyObject;
         }
     };
+
+    template<typename T, int CAPACITY>
+    T Collection<T, CAPACITY>::dummyObject;
+
+    // Specialize the dummy object when type T = Pair and CAPACITY = 100
+    template<>
+    Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
+
+//    template<typename T, int CAPACITY>
+//    T Collection<T, CAPACITY>::dummyObject {};
+//
+//    // Specialize the dummy object when type T = Pair and CAPACITY = 100
+//    template<>
+//    Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
 }
 
 #endif // SDDS_COLLECTION_H

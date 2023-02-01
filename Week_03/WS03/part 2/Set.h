@@ -12,9 +12,31 @@ I have done all the coding by myself and only copied the code that my professor 
 #ifndef SDDS_SET_H
 #define SDDS_SET_H
 
-namespace sdds {
-    class Set {
+#include "Collection.h"
 
+namespace sdds {
+    template<typename T>
+    class Set : public Collection<T, 100> {
+    public:
+        // A mutator that adds a copy of the parameter to the collection if there still is capacity and the item is not repeated
+        virtual bool add(const T& item) {
+            int duplicateCount = 0;
+            bool result = false;
+
+            // Looping through the array and counting the number od duplicates
+            for (int i = 0; i < Collection<T, 100>::size(); i++) {
+                if (item == Collection<T, 100>::operator[](i)) {
+                    duplicateCount++;
+                }
+            }
+
+            // Adding the item to the array if there are no duplicates
+            if (duplicateCount == 0) {
+                this->Collection<T, 100>::add(item);
+            }
+
+            return result;
+        }
     };
 }
 

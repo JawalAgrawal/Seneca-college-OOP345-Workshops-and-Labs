@@ -27,4 +27,16 @@ namespace sdds {
     std::ostream& operator<<(std::ostream& os, const Pair& pair) {
         return pair.display(os);
     }
+
+    // == operator overload
+    bool Pair::operator==(const Pair& pair) const {
+        bool result = false;
+
+        // Checking whether the keys are equal
+        if (m_key == pair.m_key) {
+            result = true;
+        }
+
+        return result;
+    }
 }
