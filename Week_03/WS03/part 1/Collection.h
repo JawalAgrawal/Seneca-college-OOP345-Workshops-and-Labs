@@ -16,7 +16,7 @@ I have done all the coding by myself and only copied the code that my professor 
 #include <iostream>
 
 namespace sdds {
-    template <typename T, size_t CAPACITY>
+    template <typename T, int CAPACITY>
     class Collection {
 
     private:
