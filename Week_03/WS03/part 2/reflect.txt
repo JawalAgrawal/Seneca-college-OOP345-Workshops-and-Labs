@@ -31,7 +31,32 @@ int ClassName<T, N>::varName = 0;
 Defining inside the class using ‘inline’ keyword: inline static int varName = 0;
 
 We have specialized the ‘add()’ function because we cannot compare two double numbers accurately due to their precision. For instance) 0.0000000001 and 0.00000000001 are almost the same and the only difference between them is the precision. We used the ‘std::fabs()’ function take care of this problem.
-========== To Do ==========
+
+Check: if (std::fabs(item - Collection<double, 100>::operator[](i)) <= 0.01)
 
 In terms of difficulty, I had to get help from my professor to understand how to specialize templates for classes and functions. The following is the way I managed to do that.
-========== To Do ============
+
+// Specialize the dummy object when type T = Pair and CAPACITY = 100
+template<>
+Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
+
+// Specialized add function
+template<>
+bool Set<double>::add(const double& item) {
+    int duplicateCount = 0;
+    bool result = false;
+
+    // Looping through the array and counting the number od duplicates
+    for (int i = 0; i < Collection<double, 100>::size(); i++) {
+        if (std::fabs(item - Collection<double, 100>::operator[](i)) <= 0.01) {
+            duplicateCount++;
+        }
+    }
+
+    // Adding the item to the array if there are no duplicates
+    if (duplicateCount == 0) {
+        this->Collection<double, 100>::add(item);
+    }
+
+    return result;
+}

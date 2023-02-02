@@ -13,6 +13,8 @@ I have done all the coding by myself and only copied the code that my professor 
 #define SDDS_SET_H
 
 #include "Collection.h"
+#include <iostream>
+#include <cmath>
 
 namespace sdds {
     template<typename T>
@@ -38,6 +40,26 @@ namespace sdds {
             return result;
         }
     };
+
+    template<>
+    bool Set<double>::add(const double& item) {
+        int duplicateCount = 0;
+        bool result = false;
+
+        // Looping through the array and counting the number od duplicates
+        for (int i = 0; i < Collection<double, 100>::size(); i++) {
+            if (std::fabs(item - Collection<double, 100>::operator[](i)) <= 0.01) {
+                duplicateCount++;
+            }
+        }
+
+        // Adding the item to the array if there are no duplicates
+        if (duplicateCount == 0) {
+            this->Collection<double, 100>::add(item);
+        }
+
+        return result;
+    }
 }
 
 #endif // SDDS_SET_H

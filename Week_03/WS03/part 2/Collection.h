@@ -71,7 +71,7 @@ namespace sdds {
         // Returns a copy of the element stored in the collection at the specified index
         T& operator[](int index) {
             // Returning the item at the particular index if the index is valid
-            if (index >= 0 && index < CAPACITY) {
+            if (index >= 0 && index < elementsInCollection) {
                 return items[index];
             }
 
@@ -79,19 +79,9 @@ namespace sdds {
         }
     };
 
-//    template<typename T, int CAPACITY>
-//    T Collection<T, CAPACITY>::dummyObject;
-
     // Specialize the dummy object when type T = Pair and CAPACITY = 100
-//    template<>
-//    Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
-
-//    template<typename T, int CAPACITY>
-//    T Collection<T, CAPACITY>::dummyObject {};
-//
-//    // Specialize the dummy object when type T = Pair and CAPACITY = 100
-//    template<>
-//    Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
+    template<>
+    Pair Collection<Pair, 100>::dummyObject{Pair("No Key", "No Value")};
 }
 
 #endif // SDDS_COLLECTION_H
