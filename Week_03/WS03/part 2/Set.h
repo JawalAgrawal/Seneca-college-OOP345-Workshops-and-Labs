@@ -22,31 +22,29 @@ namespace sdds {
     public:
         // A mutator that adds a copy of the parameter to the collection if there still is capacity and the item is not repeated
         virtual bool add(const T& item) {
-            int duplicateCount = 0;
-            bool result = false;
+            int duplicateCount {0};
+            bool result {false};
 
-            // Looping through the array and counting the number od duplicates
+            // Looping through the array and counting the number of duplicates
             for (int i = 0; i < Collection<T, 100>::size(); i++) {
                 if (item == Collection<T, 100>::operator[](i)) {
                     duplicateCount++;
                 }
             }
-
             // Adding the item to the array if there are no duplicates
             if (duplicateCount == 0) {
                 this->Collection<T, 100>::add(item);
             }
-
             return result;
         }
     };
 
     template<>
     bool Set<double>::add(const double& item) {
-        int duplicateCount = 0;
-        bool result = false;
+        int duplicateCount {0};
+        bool result {false};
 
-        // Looping through the array and counting the number od duplicates
+        // Looping through the array and counting the number of duplicates
         for (int i = 0; i < Collection<double, 100>::size(); i++) {
             if (std::fabs(item - Collection<double, 100>::operator[](i)) <= 0.01) {
                 duplicateCount++;

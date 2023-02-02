@@ -20,7 +20,7 @@ namespace sdds {
     class Collection {
     private:
         T items[CAPACITY] {};
-        inline static T dummyObject {};
+        static T dummyObject;
         int elementsInCollection{ 0 };
 
     public:
@@ -40,31 +40,24 @@ namespace sdds {
             os << "----------------------" << std::endl;
             os << "| Collection Content |" << std::endl;
             os << "----------------------" << std::endl;
-
             // Inserting all the elements into the stream
             for (int i = 0; i < elementsInCollection; i++) {
                 os << items[i] << std::endl;
             }
-
             os << "----------------------" << std::endl;
-
             return os;
         }
 
         // A mutator that adds a copy of the parameter to the collection if there still is capacity
         virtual bool add(const T& item) {
-            bool result = false;
-
+            bool result {false};
             // Checking whether there is space for a new element to be added
             if (elementsInCollection < CAPACITY) {
                 items[elementsInCollection] = item;
-
                 // Incrementing the number of elements if an element was added
                 elementsInCollection++;
-
                 result = true;
             }
-
             return result;
         }
 
@@ -78,6 +71,10 @@ namespace sdds {
             return dummyObject;
         }
     };
+
+    // Initializing class variable outside the class
+    template<typename T, int CAPACITY>
+     T Collection<T, CAPACITY>::dummyObject {};
 
     // Specialize the dummy object when type T = Pair and CAPACITY = 100
     template<>

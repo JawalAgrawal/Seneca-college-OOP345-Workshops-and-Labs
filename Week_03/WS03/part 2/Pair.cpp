@@ -18,7 +18,7 @@ namespace sdds {
     Pair::Pair() {};
 
     // Display Function
-    std::ostream& Pair::display(std::ostream& os) const {
+    std::ostream& Pair::display(std::ostream& os = std::cout) const {
         os << setw(20) << right << m_key << ": " << left << m_value;
         return os;
     }
@@ -31,12 +31,10 @@ namespace sdds {
     // == operator overload
     bool Pair::operator==(const Pair& pair) const {
         bool result = false;
-
         // Checking whether the keys are equal
         if (m_key == pair.m_key) {
             result = true;
         }
-
         return result;
     }
 }
