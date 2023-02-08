@@ -17,6 +17,11 @@ namespace sdds {
 
         // Storing the name
         t_name = toy.substr(startIndex, (endIndex - startIndex));
+
+        // Erasing trailing and leading white spaces
+        t_name.erase(0, t_name.find_first_not_of(" \t\r\n"));
+        t_name.erase(t_name.find_last_not_of(" \t\r\n") + 1);
+
         startIndex = endIndex + 1;
         endIndex = toy.find(':', startIndex);
 
@@ -27,7 +32,6 @@ namespace sdds {
 
         // Storing the price
         t_price = std::stod(toy.substr(startIndex, (endIndex - startIndex)));
-
     }
 
     // Updates the number of items attribute with the received value
@@ -43,7 +47,7 @@ namespace sdds {
         double t_total = t_subtotal + t_tax;
 
         // Inserting into output stream
-        os << "Toy " << std::left << std::setw(8) << toy.t_orderID << ":";
+        os << "Toy" << std::right << std::setw(8) << toy.t_orderID << ":";
         os << std::right << std::setw(18) << toy.t_name;
         os << std::right << std::setw(3) << toy.t_numberOfItems << " items";
         os << std::setw(8) << toy.t_price << "/item";
