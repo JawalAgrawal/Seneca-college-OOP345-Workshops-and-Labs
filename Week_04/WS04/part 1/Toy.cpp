@@ -6,6 +6,27 @@
 namespace sdds {
     // Responsible for extracting information about the toy and storing the tokens in the instance's attributes
     Toy::Toy(const std::string& toy) {
+        // Initializing the start and the end index
+        size_t startIndex = 0;
+        size_t endIndex = toy.find(':');
+
+        // Storing the ID
+        t_orderID = std::stoi(toy.substr(startIndex, (endIndex - startIndex)));
+        startIndex = endIndex + 1;
+        endIndex = toy.find(':', startIndex);
+
+        // Storing the name
+        t_name = toy.substr(startIndex, (endIndex - startIndex));
+        startIndex = endIndex + 1;
+        endIndex = toy.find(':', startIndex);
+
+        // Storing the number of items
+        t_numberOfItems = std::stoi(toy.substr(startIndex, (endIndex - startIndex)));
+        startIndex = endIndex + 1;
+        endIndex = toy.find(':', startIndex);
+
+        // Storing the price
+        t_price = std::stod(toy.substr(startIndex, (endIndex - startIndex)));
 
     }
 
@@ -24,11 +45,12 @@ namespace sdds {
         // Inserting into output stream
         os << "Toy " << std::left << std::setw(8) << toy.t_orderID << ":";
         os << std::right << std::setw(18) << toy.t_name;
-        os << std::left << std::setw(3) << toy.t_numberOfItems << "items";
+        os << std::right << std::setw(3) << toy.t_numberOfItems << " items";
         os << std::setw(8) << toy.t_price << "/item";
-        os << std::setw(7) << "subtotal: " << t_subtotal;
-        os << " tax: " << std::setw(6) << t_tax;
-        os << " total: " << std::setw(7) << t_total << std::endl;
+        os << "  subtotal:";
+        os << std::right  << std::setw(7) << std::fixed << std::setprecision(2) << t_subtotal;
+        os << std::right  << " tax:" << std::setw(6) << t_tax;
+        os << std::right  << " total:" << std::setw(7) << t_total << std::endl;
         return os;
     }
 }
