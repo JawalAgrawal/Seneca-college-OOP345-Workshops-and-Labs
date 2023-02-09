@@ -5,5 +5,8 @@ This repository contains all the OOP345 (Object Oriented Programming) workshops,
 - WS01 : 8.5 / 10 <br />
 Having prototypes for the rule of 3 in the header would be good practice. Copy assignment operator doesn't deallocate memory prior to allocating new memory. It's not certain that the current obj doesn't already have memory prior (as it's an  previously existing object). Read function in part 2 should incorporate a std::string to allow for capturing a brand string of any length. Having a static char array as a buffer isn't a good fit. An alternative is a use of a reallocation loop though std::string is more straightforward.
 
+-WS02 : 9 / 10 <br />
+Functions added outside of the spec should be in the private scope (eg setEmpty). For the comparison of move vs copy it would better to do a direct comparison of the code to outline the exact differences between the two. Also it would be good to go more into how chrono works  and was used to measure the operations.
+
 # Disclaimer
 Please don't just copy the code mindlessly without trying to solve the problems yourself, it's totally pointless if you actually wanna learn how to write software and a blatant violation of the [Academic Integrity](https://www.senecacollege.ca/about/policies/academic-integrity-policy.html) policy of the course.
