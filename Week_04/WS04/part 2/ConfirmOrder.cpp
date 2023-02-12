@@ -114,7 +114,7 @@ namespace sdds {
         // Removing the toy address
         if (toyExists) {
             const Toy** tempToyArr = new const Toy*[co_toyCount - 1];
-            size_t origIndex = 0;
+            size_t origIndex { 0 };
 
             for (size_t i = 0; i < co_toyCount; i++) {
                 // Removing the item from the temporary array

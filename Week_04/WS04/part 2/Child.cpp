@@ -40,7 +40,7 @@ namespace sdds {
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
 
-            // Dynamically allocating memory for the toys arrau
+            // Dynamically allocating memory for the toys array
             toys = new const Toy*[src.c_toyCount];
 
             // Assignment
@@ -93,9 +93,9 @@ namespace sdds {
 
     // Insert the content of a Child object into an ostream object
     std::ostream& operator<<(std::ostream& os, const Child& child) {
-        int CALL_CNT = 1;
+        static int call_cnt {1};
         os << "--------------------------" << std::endl;
-        os << "Child " << CALL_CNT << ": " << child.c_name << " " << child.c_age << " years old:" << std::endl;
+        os << "Child " << call_cnt << ": " << child.c_name << " " << child.c_age << " years old:" << std::endl;
         os << "--------------------------" << std::endl;
         if (child.size() > 0) {
             for (size_t i = 0; i < child.size(); i++) {
@@ -108,7 +108,7 @@ namespace sdds {
 
         os << "--------------------------" << std::endl;
 
-        CALL_CNT++;
+        call_cnt++;
         return os;
     }
 }

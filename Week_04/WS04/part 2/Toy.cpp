@@ -18,7 +18,7 @@ namespace sdds {
     // Responsible for extracting information about the toy and storing the tokens in the instance's attributes
     Toy::Toy(const std::string& toy) {
         // Initializing the start and the end index
-        size_t startIndex = 0;
+        size_t startIndex {0};
         size_t endIndex = toy.find(':');
 
         // Storing the ID
