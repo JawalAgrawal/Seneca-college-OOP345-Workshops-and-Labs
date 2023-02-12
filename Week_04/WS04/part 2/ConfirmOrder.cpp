@@ -21,6 +21,12 @@ namespace sdds {
 
     ConfirmOrder& ConfirmOrder::operator=(const ConfirmOrder& src) {
         if (this != &src) {
+            // Deleting the dynamically allocated memory
+            if (toys) {
+                delete[] toys;
+                toys = nullptr;
+            }
+
             co_toyCount = src.co_toyCount;
 
             // Dynamically allocating memory for the toys arrau
@@ -42,6 +48,12 @@ namespace sdds {
 
     ConfirmOrder& ConfirmOrder::operator=(ConfirmOrder&& src) noexcept {
         if (this != &src) {
+            // Deleting the dynamically allocated memory
+            if (toys) {
+                delete[] toys;
+                toys = nullptr;
+            }
+
             co_toyCount = src.co_toyCount;
 
             // Dynamically allocating memory for the toys arrau
@@ -51,12 +63,6 @@ namespace sdds {
             for (size_t i = 0; i < src.co_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
-
-//            delete[] src.toys;
-//            src.c_name = nullptr;
-//            src.c_age = 0;
-//            src.c_toyCount = 0;
-//            src.toys = nullptr;
         }
 
         return *this;

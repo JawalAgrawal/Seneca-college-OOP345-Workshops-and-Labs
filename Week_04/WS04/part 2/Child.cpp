@@ -36,6 +36,12 @@ namespace sdds {
 
     Child& Child::operator=(const Child& src) {
         if (this != &src) {
+            // Deleting the dynamically allocated memory
+            if (toys) {
+                delete[] toys;
+                toys = nullptr;
+            }
+
             c_name = src.c_name;
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
@@ -59,6 +65,12 @@ namespace sdds {
 
     Child& Child::operator=(Child&& src) noexcept {
         if (this != &src) {
+            // Deleting the dynamically allocated memory
+            if (toys) {
+                delete[] toys;
+                toys = nullptr;
+            }
+
             c_name = src.c_name;
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
@@ -70,12 +82,6 @@ namespace sdds {
             for (size_t i = 0; i < c_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
-
-//            delete[] src.toys;
-//            src.c_name = nullptr;
-//            src.c_age = 0;
-//            src.c_toyCount = 0;
-//            src.toys = nullptr;
         }
 
         return *this;
