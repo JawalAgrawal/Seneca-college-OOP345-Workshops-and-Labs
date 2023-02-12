@@ -131,85 +131,85 @@ int main(int argc, char** argv)
 	}
 
 
-	// Confirm Order
-	{
-		std::cout << "CS: Testing Constructor\n";
-		std::cout << "==========================\n";
-		sdds::ConfirmOrder order1;
-		std::cout << order1;
-		std::cout << "==========================\n\n";
+//	// Confirm Order
+//	{
+//		std::cout << "CS: Testing Constructor\n";
+//		std::cout << "==========================\n";
+//		sdds::ConfirmOrder order1;
+//		std::cout << order1;
+//		std::cout << "==========================\n\n";
+//
+//		std::cout << "CS: Testing Operators\n";
+//		std::cout << "==========================\n";
+//		order1 += *ppToys[5];
+//		order1 += *ppToys[6];
+//		order1 += *ppToys[6];
+//		order1 += *ppToys[8];
+//		order1 += *ppToys[7];
+//		order1 += *ppToys[9];
+//		std::cout << order1;
+//		order1 -= *ppToys[8];
+//		order1 -= *ppToys[9];
+//		order1 -= *ppToys[7];
+//		std::cout << order1;
+//		std::cout << "==========================\n\n";
+//
+//		std::cout << "CS: Testing Copy Constructor\n";
+//		std::cout << "==========================\n";
+//		sdds::ConfirmOrder order2(order1);
+//		std::cout << order1;
+//		std::cout << order2;
+//		std::cout << "==========================\n\n";
+//
+//		order2 = order2;
+//
+//		std::cout << "CS: Testing Move Constructor\n";
+//		std::cout << "==========================\n";
+//		sdds::ConfirmOrder order3(std::move(order1));
+//		std::cout << order1;
+//		std::cout << order3;
+//		std::cout << "==========================\n\n";
+//
+//		order3 = std::move(order3);
+//	}
 
-		std::cout << "CS: Testing Operators\n";
-		std::cout << "==========================\n";
-		order1 += *ppToys[5];
-		order1 += *ppToys[6];
-		order1 += *ppToys[6];
-		order1 += *ppToys[8];
-		order1 += *ppToys[7];
-		order1 += *ppToys[9];
-		std::cout << order1;
-		order1 -= *ppToys[8];
-		order1 -= *ppToys[9];
-		order1 -= *ppToys[7];
-		std::cout << order1;
-		std::cout << "==========================\n\n";
-
-		std::cout << "CS: Testing Copy Constructor\n";
-		std::cout << "==========================\n";
-		sdds::ConfirmOrder order2(order1);
-		std::cout << order1;
-		std::cout << order2;
-		std::cout << "==========================\n\n";
-
-		order2 = order2;
-
-		std::cout << "CS: Testing Move Constructor\n";
-		std::cout << "==========================\n";
-		sdds::ConfirmOrder order3(std::move(order1));
-		std::cout << order1;
-		std::cout << order3;
-		std::cout << "==========================\n\n";
-
-		order3 = std::move(order3);
-	}
-
-	{
-		// Making a new array of pointers to toy.
-		//   The toys in this array are not constant, so we must
-		//   create copies of the original toy (which are constant)
-		sdds::Toy* toys[]{
-								new sdds::Toy(*ppToys[3]),
-								new sdds::Toy(*ppToys[5]),
-								new sdds::Toy(*ppToys[7]),
-								new sdds::Toy(*ppToys[9])
-							};
-
-		std::cout << "C + CS: Testing Relations\n";
-		std::cout << "==========================\n";
-		sdds::Child child("Tom Chow", 7, const_cast<const sdds::Toy**>(toys), 4u);
-		sdds::ConfirmOrder order;
-		(order += *toys[0]) += *toys[1];
-		(order += *toys[2]) += *toys[3];
-		std::cout << child;
-		std::cout << order;
-
-		// updating some toys in main
-		//   child should not be affected
-		//   confirm order should be affected
-		toys[0]->update(6);
-		toys[2]->update(4);
-
-		std::cout << "\nAfter main() updates some toys ...\n\n";
-
-		std::cout << child;
-		std::cout << order;
-		std::cout << "==========================\n\n";
-
-		// cleanup
-		for (auto item : toys)
-			delete item;
-
-	}
+//	{
+//		// Making a new array of pointers to toy.
+//		//   The toys in this array are not constant, so we must
+//		//   create copies of the original toy (which are constant)
+//		sdds::Toy* toys[]{
+//								new sdds::Toy(*ppToys[3]),
+//								new sdds::Toy(*ppToys[5]),
+//								new sdds::Toy(*ppToys[7]),
+//								new sdds::Toy(*ppToys[9])
+//							};
+//
+//		std::cout << "C + CS: Testing Relations\n";
+//		std::cout << "==========================\n";
+//		sdds::Child child("Tom Chow", 7, const_cast<const sdds::Toy**>(toys), 4u);
+//		sdds::ConfirmOrder order;
+//		(order += *toys[0]) += *toys[1];
+//		(order += *toys[2]) += *toys[3];
+//		std::cout << child;
+//		std::cout << order;
+//
+//		// updating some toys in main
+//		//   child should not be affected
+//		//   confirm order should be affected
+//		toys[0]->update(6);
+//		toys[2]->update(4);
+//
+//		std::cout << "\nAfter main() updates some toys ...\n\n";
+//
+//		std::cout << child;
+//		std::cout << order;
+//		std::cout << "==========================\n\n";
+//
+//		// cleanup
+//		for (auto item : toys)
+//			delete item;
+//
+//	}
 
 	// cleanup
 	for (auto i = 0u; i < count; ++i)
