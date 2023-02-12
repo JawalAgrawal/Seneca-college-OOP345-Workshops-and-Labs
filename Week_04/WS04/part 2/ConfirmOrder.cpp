@@ -1,12 +1,18 @@
+/*
+*****************************************************************************
+                              ConfirmOrder.cpp
+Full Name  : Aryan Khurana
+Student ID#: 145282216
+Email      : akhurana22@myseneca.ca
+Date of completion    : 12 February 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
 #include "ConfirmOrder.h"
 #include <iostream>
 
 namespace sdds {
-    // Adds the toy to the array by adding its address
-    ConfirmOrder& ConfirmOrder::operator+=(const Toy& toy) {
-        return *this;
-    }
-
     // Rule of 5
     // Copy Semantics
     ConfirmOrder::ConfirmOrder(const ConfirmOrder& src) {
@@ -52,8 +58,62 @@ namespace sdds {
         return *this;
     }
 
+    // Adds the toy to the array by adding its address
+    ConfirmOrder& ConfirmOrder::operator+=(const Toy& toy) {
+        // If the address of the toy is already in the array, the operator does nothing
+        bool toyExists = false;
+        for (size_t i = 0; i < co_toyCount; i++) {
+            if (toys[i] == &toy) {
+                toyExists = true;
+                break;
+            }
+        }
+
+        if (!toyExists) {
+                const Toy** tempToyArr = new const Toy*[co_toyCount + 1];
+                for (size_t i = 0; i < co_toyCount; i++) {
+                    tempToyArr[i] = toys[i];
+                }
+                tempToyArr[co_toyCount] = &toy;
+                co_toyCount++;
+
+                delete[] toys;
+                toys = tempToyArr;
+        }
+
+        return *this;
+    }
+
     // Removes the toy from the array by removing its address
     ConfirmOrder& ConfirmOrder::operator-=(const Toy& toy) {
+        // Check if the toy is in the array
+        bool toyExists = false;
+        size_t indexFound = -1;
+        for (size_t i = 0; i < co_toyCount; i++) {
+            if (toys[i] == &toy) {
+                toyExists = true;
+                indexFound = i;
+                break;
+            }
+        }
+
+        // Removing the toy address
+        if (toyExists) {
+            const Toy** tempToyArr = new const Toy*[co_toyCount - 1];
+            int origIndex = 0;
+
+            for (size_t i = 0; i < co_toyCount; i++) {
+                if (i != indexFound) {
+                    tempToyArr[origIndex] = toys[i];
+                    origIndex++;
+                }
+            }
+
+            co_toyCount--;
+            delete[] toys;
+            toys = tempToyArr;
+        }
+
         return *this;
     }
 
@@ -67,7 +127,7 @@ namespace sdds {
                 os << "There are no confirmations to send!" << std::endl;
             } else {
                 for (int i = 0; i < confirmOrder.co_toyCount; i++) {
-                    os << *confirmOrder.toys[i] << std::endl;
+                    os << *confirmOrder.toys[i];
                 }
             }
             os << "--------------------------\n";
