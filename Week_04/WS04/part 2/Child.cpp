@@ -81,6 +81,11 @@ namespace sdds {
         return *this;
     }
 
+    // Destructor
+    Child::~Child() {
+        delete[] toys;
+    }
+
     // Returns the number of toys stored in the array attribute
     size_t Child::size() const {
         return c_toyCount;

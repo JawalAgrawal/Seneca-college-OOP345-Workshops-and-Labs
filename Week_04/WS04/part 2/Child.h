@@ -38,6 +38,9 @@ namespace sdds {
         Child(Child&& src) noexcept;
         Child& operator=(Child&& src) noexcept;
 
+        // Destructor
+        ~Child();
+
         // Returns the number of toys stored in the array attribute
         size_t size() const;
 

@@ -62,6 +62,11 @@ namespace sdds {
         return *this;
     }
 
+    // Destructor
+    ConfirmOrder::~ConfirmOrder() {
+        delete[] toys;
+    }
+
     // Adds the toy to the array by adding its address
     ConfirmOrder& ConfirmOrder::operator+=(const Toy& toy) {
         // If the address of the toy is already in the array, the operator does nothing

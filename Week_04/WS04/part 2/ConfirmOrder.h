@@ -33,6 +33,9 @@ namespace sdds {
         ConfirmOrder(ConfirmOrder&& src) noexcept;
         ConfirmOrder& operator=(ConfirmOrder&& src) noexcept;
 
+        // Destructor
+        ~ConfirmOrder();
+
         // Adds the toy to the array by adding its address
         ConfirmOrder& operator+=(const Toy& toy);
 

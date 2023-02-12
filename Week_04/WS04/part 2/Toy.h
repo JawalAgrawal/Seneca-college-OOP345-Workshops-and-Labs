@@ -30,7 +30,7 @@ namespace sdds {
         Toy(const std::string& toy);
 
         // Updates the number of items attribute with the received value
-        void update(int numItems);
+        void update(size_t numItems);
 
         // Insert the contents of a toy object into an ostream object
         friend std::ostream& operator<<(std::ostream& os, const Toy& toy);
