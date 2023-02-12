@@ -13,6 +13,15 @@ namespace sdds {
         // Default Constructor
         ConfirmOrder() = default;
 
+        // Rule of 5
+        // Copy Semantics
+        ConfirmOrder(const ConfirmOrder& src);
+        ConfirmOrder& operator=(const ConfirmOrder& src);
+
+        // Move Semantics
+        ConfirmOrder(ConfirmOrder&& src) noexcept;
+        ConfirmOrder& operator=(ConfirmOrder&& src) noexcept;
+
         // Adds the toy to the array by adding its address
         ConfirmOrder& operator+=(const Toy& toy);
 

@@ -50,7 +50,7 @@ namespace sdds {
 
             // Dynamically allocating memory for the toys arrau
             toys = new const Toy*[src.c_toyCount];
-            for (size_t i = 0; i < src.size(); i++) {
+            for (size_t i = 0; i < c_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
 
