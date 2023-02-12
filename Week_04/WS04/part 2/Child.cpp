@@ -75,7 +75,7 @@ namespace sdds {
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
 
-            // Dynamically allocating memory for the toys arrau
+            // Dynamically allocating memory for the toys array
             toys = new const Toy*[src.c_toyCount];
 
             // Assignment
