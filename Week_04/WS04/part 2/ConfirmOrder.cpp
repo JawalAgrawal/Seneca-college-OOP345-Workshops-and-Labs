@@ -22,12 +22,7 @@ namespace sdds {
     ConfirmOrder& ConfirmOrder::operator=(const ConfirmOrder& src) {
         if (this != &src) {
             // Deleting the dynamically allocated memory
-            if (toys) {
-                delete[] toys;
-                toys = nullptr;
-            }
-
-            co_toyCount = src.co_toyCount;
+            delete[] toys;
 
             // Dynamically allocating memory for the toys array
             toys = new const Toy*[src.co_toyCount];
@@ -36,6 +31,9 @@ namespace sdds {
             for (size_t i = 0; i < src.co_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
+
+            // Shallow Copying
+            co_toyCount = src.co_toyCount;
         }
 
         return *this;
@@ -48,21 +46,12 @@ namespace sdds {
 
     ConfirmOrder& ConfirmOrder::operator=(ConfirmOrder&& src) noexcept {
         if (this != &src) {
-            // Deleting the dynamically allocated memory
-            if (toys) {
-                delete[] toys;
-                toys = nullptr;
-            }
+            delete[] toys;
+            toys = src.toys;
+            src.toys = nullptr;
 
             co_toyCount = src.co_toyCount;
-
-            // Dynamically allocating memory for the toys array
-            toys = new const Toy*[src.co_toyCount];
-
-            // Assignment
-            for (size_t i = 0; i < src.co_toyCount; i++) {
-                toys[i] = src.toys[i];
-            }
+            src.co_toyCount = 0;
         }
 
         return *this;

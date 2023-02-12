@@ -8,3 +8,122 @@ Date of completion    : 12 February 2023
 I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 *****************************************************************************
 */
+
+This workshop mainly taught me how to design and code composition and aggregation class relationships. This was also an amazing refresher to revise working with array of pointers and pointer to pointers. Concepts such as dynamic memory allocation of arrays of pointers and parsing strings into tokens using simple functions were also made really clear through this workshop.
+
+I faced a problem in the move constructors for the ‘Child’ class as I could not understand how to remove the source data. I researched on the internet and asked a couple of friends about what I am supposed to do here and figured out that I was not treating the pointer array as an array of copies of Toys.
+So, instead of just deallocating memory for the toys array, I had to deallocate memory for all of the toy copies inside the array as well.
+Incorrect Code:
+delete[] toys;
+toys = nullptr;
+
+Corrected Code:
+for (size_t i = 0; i < c_toyCount; i++) {
+    delete toys[i];
+}
+delete[] toys;
+toys = nullptr;
+
+Relationship between ‘Child’ and ‘Toy’:
+There is a compositional relationship between ‘Child’ and ‘Toy’. This is because we are managing a dynamic array of toy pointers. We are essentially allocating memory for every toy pointer in order to store copies of the Toy objects. Due to this, we have to manage the allocation and deallocation of the objects of the ‘Toy’ class. This makes it a composition.
+Allocation:
+for (size_t i = 0; i < c_toyCount; i++) {
+    toys[i] = new Toy(*(toysArr[i]));
+}
+
+Deallocation:
+for (size_t i = 0; i < c_toyCount; i++) {
+    delete toys[i];
+}
+
+Relationship between ‘Child’ and the Array of Pointers:
+This is also a compositional relationship as we are the ones who allocate and deallocate dynamic memory for the array of pointers.
+Allocation:
+toys = new const Toy*[src.c_toyCount];
+
+Deallocation:
+delete[] toys;
+
+Relationship between ‘ConfirmOrder’ and ‘Toy’:
+This is an Aggregation. This is because we only deal with the addresses of Toys and we do not have to dynamically allocate memory for the toy object copies. As we only operate with addresses we don’t have to worry about the allocation and deallocation of the Toy objects.
+
+Relationship between ‘ConfirmOrder’ and the Array of pointers:
+This is also a composition as we take care of dynamic memory allocation and deallocation for the array of pointers. We also had to use a lot of memory allocation and deallocation while implementing the ‘+=’ and ‘-=’ operator overloads which were used to add or delete the Toy addresses from the array of pointers.
+Allocation:
+toys = new const Toy*[src.co_toyCount];
+
+Deallocation:
+delete[] toys;
+
+
+The difference between Composition and Aggregation is simple. If a class is responsible for copying and destroying its resource, then the relationship is a composition. The component classes are contained within the composer and the composer will determine the lifetime of the components. Aggregation doesn’t manage the creation or destruction of the class/ objects that it uses. The destruction of the aggregating class will not affect the aggregated class and vice versa.
+
+The difference between the implementations of move and copy functions in compositions and aggregations is that compositions have to take care of dynamic memory allocation and deallocation of the component class. However, in case of aggregations, addresses can be assigned instead of allocating memory for copies.
+In Compositions:
+Copying: Here we deallocate memory for all the Toy copies first and deallocate the pointer array before allocating memory for individual toy object copies and the pointer array itself.
+/ Deleting the dynamically allocated memory
+for (size_t i = 0; i < c_toyCount; i++) {
+    delete toys[i];
+}
+delete[] toys;
+toys = nullptr;
+
+if (src.toys) {
+    // Dynamically allocating memory for the toys array
+    toys = new const Toy*[src.c_toyCount];
+
+    // Assignment
+    for (size_t i = 0; i < src.c_toyCount; i++) {
+        // Creating a new toy object from target of src.toys at i
+        toys[i] = new Toy(*(src.toys[i]));
+    }
+}
+
+// Shallow Copying
+c_name = src.c_name;
+c_age = src.c_age;
+c_toyCount = src.c_toyCount;
+
+Moving: 
+/ Deleting the dynamically allocated memory
+for (size_t i = 0; i < c_toyCount; i++) {
+    delete toys[i];
+}
+delete[] toys;
+toys = nullptr;
+
+toys = src.toys;
+src.toys = nullptr;
+
+c_name = src.c_name;
+src.c_name = "";
+
+c_age = src.c_age;
+src.c_age = 0;
+
+c_toyCount = src.c_toyCount;
+src.c_toyCount = 0;
+
+In Aggregations:
+Copying: Here we do not have to deallocate or allocate memory for anything other than the array of pointers as we are dealing with addresses and not with copies of objects.
+// Deleting the dynamically allocated memory
+delete[] toys;
+
+// Dynamically allocating memory for the toys array
+toys = new const Toy*[src.co_toyCount];
+
+// Assignment
+for (size_t i = 0; i < src.co_toyCount; i++) {
+    toys[i] = src.toys[i];
+}
+
+// Shallow Copying
+co_toyCount = src.co_toyCount;
+
+Moving:
+delete[] toys;
+toys = src.toys;
+src.toys = nullptr;
+
+co_toyCount = src.co_toyCount;
+src.co_toyCount = 0;

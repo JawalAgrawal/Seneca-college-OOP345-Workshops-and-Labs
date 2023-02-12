@@ -21,7 +21,7 @@ namespace sdds {
 
             // Assignment
             for (size_t i = 0; i < c_toyCount; i++) {
-                toys[i] = toysArr[i];
+                toys[i] = new Toy(*(toysArr[i]));
             }
         } else {
             toys = nullptr;
@@ -37,22 +37,27 @@ namespace sdds {
     Child& Child::operator=(const Child& src) {
         if (this != &src) {
             // Deleting the dynamically allocated memory
-            if (toys) {
-                delete[] toys;
-                toys = nullptr;
+            for (size_t i = 0; i < c_toyCount; i++) {
+                delete toys[i];
+            }
+            delete[] toys;
+            toys = nullptr;
+
+            if (src.toys) {
+                // Dynamically allocating memory for the toys array
+                toys = new const Toy*[src.c_toyCount];
+
+                // Assignment
+                for (size_t i = 0; i < src.c_toyCount; i++) {
+                    // Creating a new toy object from target of src.toys at i
+                    toys[i] = new Toy(*(src.toys[i]));
+                }
             }
 
+            // Shallow Copying
             c_name = src.c_name;
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
-
-            // Dynamically allocating memory for the toys array
-            toys = new const Toy*[src.c_toyCount];
-
-            // Assignment
-            for (size_t i = 0; i < src.c_toyCount; i++) {
-                toys[i] = src.toys[i];
-            }
         }
 
         return *this;
@@ -66,22 +71,23 @@ namespace sdds {
     Child& Child::operator=(Child&& src) noexcept {
         if (this != &src) {
             // Deleting the dynamically allocated memory
-            if (toys) {
-                delete[] toys;
-                toys = nullptr;
+            for (size_t i = 0; i < c_toyCount; i++) {
+                delete toys[i];
             }
+            delete[] toys;
+            toys = nullptr;
+
+            toys = src.toys;
+            src.toys = nullptr;
 
             c_name = src.c_name;
+            src.c_name = "";
+
             c_age = src.c_age;
+            src.c_age = 0;
+
             c_toyCount = src.c_toyCount;
-
-            // Dynamically allocating memory for the toys array
-            toys = new const Toy*[src.c_toyCount];
-
-            // Assignment
-            for (size_t i = 0; i < c_toyCount; i++) {
-                toys[i] = src.toys[i];
-            }
+            src.c_toyCount = 0;
         }
 
         return *this;
@@ -89,6 +95,9 @@ namespace sdds {
 
     // Destructor
     Child::~Child() {
+        for (size_t i = 0; i < c_toyCount; i++) {
+            delete toys[i];
+        }
         delete[] toys;
     }
 
