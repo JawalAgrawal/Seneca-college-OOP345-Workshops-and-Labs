@@ -29,7 +29,7 @@ namespace sdds {
         // Constructor stores copies of all toys
         Child(std::string name, int age, const Toy* toys[], size_t count);
 
-        // Rule of 5
+        // ========== Rule of 5 ==========
         // Copy Semantics
         Child(const Child& src);
         Child& operator=(const Child& src);

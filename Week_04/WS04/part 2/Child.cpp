@@ -18,9 +18,8 @@ namespace sdds {
         if (count > 0) {
             // Dynamically allocating memory for the toys array
             toys = new const Toy*[c_toyCount];
-
-            // Assignment
             for (size_t i = 0; i < c_toyCount; i++) {
+                // Creating a new toy object from target of src.toys at i
                 toys[i] = new Toy(*(toysArr[i]));
             }
         } else {
@@ -28,7 +27,7 @@ namespace sdds {
         }
     }
 
-    // Rule of 5
+    // ========== Rule of 5 ==========
     // Copy Semantics
     Child::Child(const Child& src) {
         *this = src;
@@ -43,18 +42,13 @@ namespace sdds {
             delete[] toys;
             toys = nullptr;
 
+            // Copying
             if (src.toys) {
-                // Dynamically allocating memory for the toys array
                 toys = new const Toy*[src.c_toyCount];
-
-                // Assignment
                 for (size_t i = 0; i < src.c_toyCount; i++) {
-                    // Creating a new toy object from target of src.toys at i
                     toys[i] = new Toy(*(src.toys[i]));
                 }
             }
-
-            // Shallow Copying
             c_name = src.c_name;
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
@@ -77,15 +71,13 @@ namespace sdds {
             delete[] toys;
             toys = nullptr;
 
+            // Moving
             toys = src.toys;
             src.toys = nullptr;
-
             c_name = src.c_name;
             src.c_name = "";
-
             c_age = src.c_age;
             src.c_age = 0;
-
             c_toyCount = src.c_toyCount;
             src.c_toyCount = 0;
         }
@@ -120,7 +112,6 @@ namespace sdds {
         else {
             os << "This child has no toys!" << std::endl;
         }
-
         os << "--------------------------" << std::endl;
 
         call_cnt++;

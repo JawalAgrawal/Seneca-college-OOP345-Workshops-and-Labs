@@ -13,7 +13,7 @@ I have done all the coding by myself and only copied the code that my professor 
 #include <iostream>
 
 namespace sdds {
-    // Rule of 5
+    // ========== Rule of 5 ==========
     // Copy Semantics
     ConfirmOrder::ConfirmOrder(const ConfirmOrder& src) {
         *this = src;
@@ -24,15 +24,11 @@ namespace sdds {
             // Deleting the dynamically allocated memory
             delete[] toys;
 
-            // Dynamically allocating memory for the toys array
+            // Allocation and Copying
             toys = new const Toy*[src.co_toyCount];
-
-            // Assignment
             for (size_t i = 0; i < src.co_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
-
-            // Shallow Copying
             co_toyCount = src.co_toyCount;
         }
 
@@ -47,9 +43,10 @@ namespace sdds {
     ConfirmOrder& ConfirmOrder::operator=(ConfirmOrder&& src) noexcept {
         if (this != &src) {
             delete[] toys;
+
+            // Moving
             toys = src.toys;
             src.toys = nullptr;
-
             co_toyCount = src.co_toyCount;
             src.co_toyCount = 0;
         }
@@ -80,11 +77,9 @@ namespace sdds {
                 for (size_t i = 0; i < co_toyCount; i++) {
                     tempToyArr[i] = toys[i];
                 }
-
                 // Adding the new item to the temporary array
                 tempToyArr[co_toyCount] = &toy;
                 co_toyCount++;
-
                 // Deleting the original array and assigning the temp array to the original array
                 delete[] toys;
                 toys = tempToyArr;
@@ -110,7 +105,6 @@ namespace sdds {
         if (toyExists) {
             const Toy** tempToyArr = new const Toy*[co_toyCount - 1];
             size_t origIndex { 0 };
-
             for (size_t i = 0; i < co_toyCount; i++) {
                 // Removing the item from the temporary array
                 if (i != indexFound) {
@@ -118,7 +112,6 @@ namespace sdds {
                     origIndex++;
                 }
             }
-
             // Deleting the original array and assigning the temporary array to the original one
             co_toyCount--;
             delete[] toys;
