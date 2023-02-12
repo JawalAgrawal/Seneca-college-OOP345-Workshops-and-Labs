@@ -5,9 +5,10 @@ namespace sdds {
     // Constructor stores copies of all toys
     Child::Child(std::string name, int age, const Toy* toysArr[], size_t count) : c_name(name), c_age(age), c_toyCount(count) {
         if (count > 0) {
+            // Dynamically allocating memory for the toys array
             toys = new const Toy*[c_toyCount];
             for (size_t i = 0; i < c_toyCount; i++) {
-                toys[i] = new Toy(*toysArr[i]);
+                toys[i] = toysArr[i];
             }
         } else {
             toys = nullptr;
@@ -26,12 +27,10 @@ namespace sdds {
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
 
-            for (size_t i = 0; i < src.size(); i++) {
-                delete[] toys[i];
-            }
-
-            for (size_t i = 0; i < src.size(); i++) {
-                toys[i] = new Toy(*(src.toys[i]));
+            // Dynamically allocating memory for the toys arrau
+            toys = new const Toy*[src.c_toyCount];
+            for (size_t i = 0; i < src.c_toyCount; i++) {
+                toys[i] = src.toys[i];
             }
         }
 
@@ -49,9 +48,17 @@ namespace sdds {
             c_age = src.c_age;
             c_toyCount = src.c_toyCount;
 
+            // Dynamically allocating memory for the toys arrau
+            toys = new const Toy*[src.c_toyCount];
             for (size_t i = 0; i < src.size(); i++) {
                 toys[i] = src.toys[i];
             }
+
+//            delete[] src.toys;
+//            src.c_name = nullptr;
+//            src.c_age = 0;
+//            src.c_toyCount = 0;
+//            src.toys = nullptr;
         }
 
         return *this;

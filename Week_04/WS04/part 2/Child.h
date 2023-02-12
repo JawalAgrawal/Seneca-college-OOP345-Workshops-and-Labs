@@ -8,9 +8,9 @@ namespace sdds {
     class Child {
     private:
         std::string c_name {};
-        int c_age {};
-        const sdds::Toy** toys {};
-        int c_toyCount {};
+        int c_age { 0 };
+        const sdds::Toy** toys { nullptr };
+        int c_toyCount { 0 };
     public:
         // Default Constructor
         Child() = default;
