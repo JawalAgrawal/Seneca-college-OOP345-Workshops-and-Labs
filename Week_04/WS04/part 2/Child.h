@@ -21,7 +21,7 @@ namespace sdds {
         std::string c_name {};
         int c_age { 0 };
         const sdds::Toy** toys { nullptr };
-        int c_toyCount { 0 };
+        size_t c_toyCount { 0 };
     public:
         // Default Constructor
         Child() = default;

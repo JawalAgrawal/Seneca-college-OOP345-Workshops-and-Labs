@@ -18,6 +18,8 @@ namespace sdds {
         if (count > 0) {
             // Dynamically allocating memory for the toys array
             toys = new const Toy*[c_toyCount];
+
+            // Assignment
             for (size_t i = 0; i < c_toyCount; i++) {
                 toys[i] = toysArr[i];
             }
@@ -40,6 +42,8 @@ namespace sdds {
 
             // Dynamically allocating memory for the toys arrau
             toys = new const Toy*[src.c_toyCount];
+
+            // Assignment
             for (size_t i = 0; i < src.c_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
@@ -61,6 +65,8 @@ namespace sdds {
 
             // Dynamically allocating memory for the toys arrau
             toys = new const Toy*[src.c_toyCount];
+
+            // Assignment
             for (size_t i = 0; i < c_toyCount; i++) {
                 toys[i] = src.toys[i];
             }

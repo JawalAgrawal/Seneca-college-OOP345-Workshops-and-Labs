@@ -46,7 +46,7 @@ namespace sdds {
     }
 
     // Updates the number of items attribute with the received value
-    void Toy::update(int numItems) {
+    void Toy::update(size_t numItems) {
         t_numberOfItems = numItems;
     }
 

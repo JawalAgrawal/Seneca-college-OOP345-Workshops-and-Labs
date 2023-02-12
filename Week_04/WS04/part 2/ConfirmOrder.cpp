@@ -25,6 +25,8 @@ namespace sdds {
 
             // Dynamically allocating memory for the toys arrau
             toys = new const Toy*[src.co_toyCount];
+
+            // Assignment
             for (size_t i = 0; i < src.co_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
@@ -44,6 +46,8 @@ namespace sdds {
 
             // Dynamically allocating memory for the toys arrau
             toys = new const Toy*[src.co_toyCount];
+
+            // Assignment
             for (size_t i = 0; i < src.co_toyCount; i++) {
                 toys[i] = src.toys[i];
             }
@@ -70,13 +74,18 @@ namespace sdds {
         }
 
         if (!toyExists) {
+            // Creating a temporary array and making changes to it
                 const Toy** tempToyArr = new const Toy*[co_toyCount + 1];
+                // Copying all items from the original array to the temporary array
                 for (size_t i = 0; i < co_toyCount; i++) {
                     tempToyArr[i] = toys[i];
                 }
+
+                // Adding the new item to the temporary array
                 tempToyArr[co_toyCount] = &toy;
                 co_toyCount++;
 
+                // Deleting the original array and assigning the temp array to the original array
                 delete[] toys;
                 toys = tempToyArr;
         }
@@ -100,15 +109,17 @@ namespace sdds {
         // Removing the toy address
         if (toyExists) {
             const Toy** tempToyArr = new const Toy*[co_toyCount - 1];
-            int origIndex = 0;
+            size_t origIndex = 0;
 
             for (size_t i = 0; i < co_toyCount; i++) {
+                // Removing the item from the temporary array
                 if (i != indexFound) {
                     tempToyArr[origIndex] = toys[i];
                     origIndex++;
                 }
             }
 
+            // Deleting the original array and assigning the temporary array to the original one
             co_toyCount--;
             delete[] toys;
             toys = tempToyArr;
@@ -126,7 +137,7 @@ namespace sdds {
             if (confirmOrder.co_toyCount == 0) {
                 os << "There are no confirmations to send!" << std::endl;
             } else {
-                for (int i = 0; i < confirmOrder.co_toyCount; i++) {
+                for(size_t i = 0; i < confirmOrder.co_toyCount; i++) {
                     os << *confirmOrder.toys[i];
                 }
             }

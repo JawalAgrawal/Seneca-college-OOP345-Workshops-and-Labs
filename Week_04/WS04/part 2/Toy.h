@@ -17,10 +17,10 @@ I have done all the coding by myself and only copied the code that my professor 
 namespace sdds {
     class Toy {
     private:
-        int t_orderID{};
+        int t_orderID{ 0 };
         std::string t_name {};
-        int t_numberOfItems {};
-        double t_price {};
+        size_t t_numberOfItems { 0 };
+        double t_price { 0 };
         double t_hstPercentage{ 13 };
     public:
         // Default Constructor
