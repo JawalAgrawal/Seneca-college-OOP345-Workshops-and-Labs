@@ -30,6 +30,9 @@ namespace sdds {
         // Extracts the information about the book from the string by parsing it and stores the tokens in the object's attributes
         Book(const std::string& strBook);
 
+        // Destructor
+        virtual ~Book();
+
         // A query that returns the title of the book
         const std::string& title() const;
 

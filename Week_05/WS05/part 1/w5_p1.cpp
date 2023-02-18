@@ -35,6 +35,30 @@ int main(int argc, char** argv)
 		//       - lines that start with "#" are considered comments and should be ignored
 		//       - if the file cannot be open, print a message to standard error console and
 		//                exit from application with error code "AppErrors::CannotOpenFile"
+
+        std::ifstream file(argv[1]);
+        if (!file) {
+            exit(AppErrors::CannotOpenFile);
+        }
+
+        std::string strBook;
+        size_t count = 0;
+        do {
+            std::getline(file, strBook);
+            // if the previous operation failed, the "file" object is
+            //   in error mode
+            if (file)
+            {
+                // Check if this is a commented line.
+                //   In the input file, commented lines start with '#'
+                if (strBook[0] != '#')
+                {
+                    library[count] = strBook;
+                    ++count;
+                }
+            }
+        } while (file);
+        file.close();
 	}
 	else
 	{
@@ -51,6 +75,13 @@ int main(int argc, char** argv)
 	//            and save the new price in the book object
 	//       - if the book was published in UK between 1990 and 1999 (inclussive),
 	//            multiply the price with "gbpToCadRate" and save the new price in the book object
+    auto changePrice = [&](Book& book) {
+        if (book.country() == "US") {
+            book.price() *= usdToCadRate;
+        } else if (book.country() == "UK" && book.year() >= 1990 && book.year() <= 1999) {
+            book.price() *= gbpToCadRate;
+        }
+    };
 
 
 
@@ -58,6 +89,9 @@ int main(int argc, char** argv)
 	std::cout << "The library content\n";
 	std::cout << "-----------------------------------------\n";
 	// TODO: iterate over the library and print each book to the screen
+    for (const auto& book : library) {
+        std::cout << book << std::endl;
+    }
 
 
 
@@ -65,6 +99,9 @@ int main(int argc, char** argv)
 
 	// TODO: iterate over the library and update the price of each book
 	//         using the lambda defined above.
+    for (auto& book : library) {
+        changePrice(book);
+    }
 
 
 
@@ -72,6 +109,9 @@ int main(int argc, char** argv)
 	std::cout << "The library content (updated prices)\n";
 	std::cout << "-----------------------------------------\n";
 	// TODO: iterate over the library and print each book to the screen
+    for (const auto& book : library) {
+        std::cout << book << std::endl;
+    }
 
 
 

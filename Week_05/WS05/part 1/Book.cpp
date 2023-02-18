@@ -55,11 +55,14 @@ namespace sdds {
         endIndex = strBook.find(',', startIndex);
 
         // Storing the description of the book
-        m_description = strBook.substr(startIndex, (endIndex - startIndex));
+        m_description = strBook.substr(startIndex, endIndex);
         // Erasing trailing and leading white spaces
         m_description.erase(0, m_description.find_first_not_of(" \t\r\n"));
         m_description.erase(m_description.find_last_not_of(" \t\r\n") + 1);
     }
+
+    // Destructor
+    Book::~Book() {}
 
     // A query that returns the title of the book
     const std::string& Book::title() const { return m_title; }
