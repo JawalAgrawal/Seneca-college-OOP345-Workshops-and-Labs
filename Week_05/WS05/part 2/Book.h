@@ -47,6 +47,12 @@ namespace sdds {
 
         // Friend helper insertion operator
         friend std::ostream& operator<<(std::ostream& os, const Book& book);
+
+        // Calls the overloaded operator() on the instance spellChecker, passing to it the book description
+        template <typename T>
+        void fixSpelling(T& spellChecker) {
+            spellChecker(m_description);
+        }
     };
 }
 
