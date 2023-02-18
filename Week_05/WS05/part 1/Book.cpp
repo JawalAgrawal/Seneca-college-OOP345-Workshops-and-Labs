@@ -52,7 +52,7 @@ namespace sdds {
         // Storing the year of publication
         m_yearOfPublication = std::stoi(strBook.substr(startIndex, (endIndex - startIndex)));
         startIndex = endIndex + 1;
-        endIndex = strBook.find(',', startIndex);
+        endIndex = strBook.find('\n', startIndex);
 
         // Storing the description of the book
         m_description = strBook.substr(startIndex, endIndex);
