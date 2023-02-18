@@ -1,14 +1,50 @@
-//
-// Created by Aryan Khurana on 2023-02-15.
-//
+/*
+*****************************************************************************
+                              Book.h
+Full Name  : Aryan Khurana
+Student ID#: 145282216
+Email      : akhurana22@myseneca.ca
+Date of completion    : 16 February 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
 
-#ifndef PART_1_BOOK_H
-#define PART_1_BOOK_H
+#ifndef SDDS_BOOK_H
+#define SDDS_BOOK_H
 
+#include <iostream>
 
-class Book {
+namespace sdds {
+    class Book {
+    private:
+        std::string m_author;
+        std::string m_title;
+        std::string m_countryOfPublication;
+        size_t m_yearOfPublication;
+        double m_price;
+        std::string m_description;
+    public:
+        // A default constructor
+        Book() = default;
 
-};
+        // Extracts the information about the book from the string by parsing it and stores the tokens in the object's attributes
+        Book(const std::string& strBook);
 
+        // A query that returns the title of the book
+        const std::string& title() const;
 
-#endif //PART_1_BOOK_H
+        // A query that returns the publication country
+        const std::string& country() const;
+
+        // A query that returns the publication year
+        const size_t& year() const;
+
+        // A function that returns the price by reference, allowing the client code to update the price
+        double& price();
+
+        // Friend helper insertion operator
+        friend std::ostream& operator<<(std::ostream& os, const Book& book);
+    };
+}
+
+#endif // SDDS_BOOK_H
