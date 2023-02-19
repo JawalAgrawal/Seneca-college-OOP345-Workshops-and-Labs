@@ -60,8 +60,22 @@ int main(int argc, char** argv)
 		//       - if the file cannot be open, print a message to standard error console and
 		//                exit from application with error code "AppErrors::CannotOpenFile"
 
+        std::ifstream file(argv[1]);
+        if (!file) {
+            exit(AppErrors::CannotOpenFile);
+        }
 
-
+        std::string strBook;
+        size_t count = 0;
+        do {
+            std::getline(file, strBook);
+            if (file) {
+                if (strBook[0] != '#') {
+                    library += strBook;
+                    ++count;
+                }
+            }
+        } while (file && count < 4);
 
 		/*
 		 ♪ Hey, I just met you,      ♪
@@ -74,11 +88,18 @@ int main(int argc, char** argv)
 
 		// TODO: add the rest of the books from the file.
 
-
-
+        do {
+            std::getline(file, strBook);
+            if (file) {
+                if (strBook[0] != '#') {
+                    library += strBook;
+                    ++count;
+                }
+            }
+        } while (file);
+        file.close();
 	}
-	else
-	{
+	else {
 		std::cerr << "ERROR: Incorrect number of arguments.\n";
 		exit(AppErrors::BadArgumentCount);
 	}
@@ -93,6 +114,13 @@ int main(int argc, char** argv)
 	//       - if the book was published in UK between 1990 and 1999 (inclussive),
 	//            multiply the price with "gbpToCadRate" and save the new price in the book object
 
+    auto changePrice = [&](Book& book) {
+        if (book.country() == "US") {
+            book.price() *= usdToCadRate;
+        } else if (book.country() == "UK" && book.year() >= 1990 && book.year() <= 1999) {
+            book.price() *= gbpToCadRate;
+        }
+    };
 
 
 	std::cout << "-----------------------------------------\n";
@@ -103,6 +131,10 @@ int main(int argc, char** argv)
 
 	// TODO (from part #1): iterate over the library and update the price of each book
 	//         using the lambda defined above.
+
+    for (size_t i = 0; i < library.size(); i++) {
+        changePrice(library[i]);
+    }
 
 
 
@@ -122,7 +154,23 @@ int main(int argc, char** argv)
 		//       - store each movie read into the array "movies"
 		//       - lines that start with "#" are considered comments and should be ignored
 
+        std::ifstream file(argv[2]);
+        if (!file) {
+            exit(AppErrors::CannotOpenFile);
+        }
 
+        std::string strMovie;
+        size_t count = 0;
+        do {
+            std::getline(file, strMovie);
+            if (file) {
+                if (strMovie[0] != '#') {
+                    movies[count] = strMovie;
+                    ++count;
+                }
+            }
+        } while (file && count < 5);
+        file.close();
 
 
 	}
@@ -155,8 +203,14 @@ int main(int argc, char** argv)
 		//       If an exception occurs print a message in the following format
 		//** EXCEPTION: ERROR_MESSAGE<endl>
 		//         where ERROR_MESSAGE is extracted from the exception object.
-		for (auto i = 0u; i < 10; ++i)
-			std::cout << theCollection[i];
+
+        try {
+            for (auto i = 0u; i < 10; ++i)
+                std::cout << theCollection[i];
+        } catch(std::out_of_range& e) {
+            std::cout << "**EXCEPTION: " << e.what() << std::endl;
+        }
+
 
 	std::cout << "-----------------------------------------\n\n";
 
@@ -171,14 +225,21 @@ int main(int argc, char** argv)
 			//       If an exception occurs print a message in the following format
 			//** EXCEPTION: ERROR_MESSAGE<endl>
 			//         where ERROR_MESSAGE is extracted from the exception object.
-			SpellChecker sp(argv[i]);
-			for (auto j = 0u; j < library.size(); ++j)
-				library[j].fixSpelling(sp);
-			sp.showStatistics(std::cout);
 
-			for (auto j = 0u; j < theCollection.size(); ++j)
-				theCollection[j].fixSpelling(sp);
-			sp.showStatistics(std::cout);
+            try {
+                SpellChecker sp(argv[i]);
+
+                for (auto j = 0u; j < library.size(); ++j)
+                    library[j].fixSpelling(sp);
+                sp.showStatistics(std::cout);
+
+                for (auto j = 0u; j < theCollection.size(); ++j)
+                    theCollection[j].fixSpelling(sp);
+                sp.showStatistics(std::cout);
+
+            } catch (const char* e) {
+                std::cout << "** EXCEPTION: " << e << std::endl;
+            }
 	}
 	if (argc < 3) {
 		std::cout << "** Spellchecker is empty\n";

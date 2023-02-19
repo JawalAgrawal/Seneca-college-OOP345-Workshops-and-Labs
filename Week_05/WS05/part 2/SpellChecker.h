@@ -32,8 +32,6 @@ namespace sdds {
 
         // Inserts into the parameter how many times each misspelled word has been replaced by the correct word using the current instance
         void showStatistics(std::ostream& out) const;
-
-        // Finds out how many times each misspelled word has been replaced by the correct word using the current instance
     };
 }
 

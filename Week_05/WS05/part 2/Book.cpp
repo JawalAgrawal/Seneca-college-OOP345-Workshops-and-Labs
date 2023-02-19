@@ -61,9 +61,6 @@ namespace sdds {
         m_description.erase(m_description.find_last_not_of(" \t\r\n") + 1);
     }
 
-    // Destructor
-    Book::~Book() {}
-
     // A query that returns the title of the book
     const std::string& Book::title() const { return m_title; }
 
@@ -83,7 +80,7 @@ namespace sdds {
         os << std::right << std::setw(5) << book.m_countryOfPublication << " | ";
         os << std::right << std::setw(4) << book.m_yearOfPublication << " | ";
         os << std::right << std::setw(6) << std::fixed << std::setprecision(2) << book.m_price << " | ";
-        os << std::left << book.m_description;
+        os << std::left << book.m_description << "\n";
         return os;
     }
 }

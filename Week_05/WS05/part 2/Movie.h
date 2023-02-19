@@ -36,7 +36,8 @@ namespace sdds {
         // Function calls the overloaded operator() on instance spellChecker, passing to it the movie title and description
         template<typename T>
         void fixSpelling(T& spellChecker) {
-            spellChecker(m_title, m_description);
+            spellChecker(m_title);
+            spellChecker(m_description);
         }
     };
 }
