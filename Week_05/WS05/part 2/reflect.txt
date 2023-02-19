@@ -1,0 +1,120 @@
+/*
+*****************************************************************************
+                              reflect.txt
+Full Name  : Aryan Khurana
+Student ID#: 145282216
+Email      : akhurana22@myseneca.ca
+Date of completion    : 19 February 2023
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+Through this workshop I learnt how to design and code a templated class that allocates and deallocates dynamic memory. I did this by created in a ‘Collection’ module that has a templated class which allocates memory for a dynamically allocated array of items that can be of any types. The class also has an attribute that is a pointer to a function.
+
+template <typename T>
+class Collection {
+private:
+    std::string m_name {};
+    T* m_items {};
+    size_t m_sizeOfItems {};
+    void (*m_observerFuncPtr)(const Collection<T>&, const T&);
+}
+
+The class also has a function that receives the address of a callback function to execute.
+
+// Stores the address of the callback function (observer) into an attribute
+void setObserver(void (*observer)(const Collection<T>&, const T&)) {
+    m_observerFuncPtr = observer;
+}
+
+This workshop also helps in learning about lambda functions by implementing them.
+
+auto changePrice = [&](Book& book) {
+    if (book.country() == "US") {
+        book.price() *= usdToCadRate;
+    } else if (book.country() == "UK" && book.year() >= 1990 && book.year() <= 1999) {
+        book.price() *= gbpToCadRate;
+    }
+};
+
+This Lambda function uses two variables that are out of its scope by getting them using references from the capture-list and takes a ‘Book’ reference as a parameter. Then it modifies the price according to some logic mentioned in the code above. We then use this function on every single book in the library to make changes to the price.
+
+for (size_t i = 0; i < library.size(); i++) {
+    changePrice(library[i]);
+}
+
+We also learn how to implement error and exception handling through try and catch blocks. We essentially wrap the expressions that might possibly throw an exception in a try block and catch the exception later on.
+
+try {
+    for (auto i = 0u; i < 10; ++i)
+        std::cout << theCollection[i];
+} catch(std::out_of_range& e) {
+    std::cout << "** EXCEPTION: " << e.what() << std::endl;
+}
+
+One major problem that I faced in this workshop was that I wasn’t able to delete the copy and move assignments at first. It gave me an error saying that the copy assignment is being used in the code and I cannot delete it. However, I found out that this error was caused because in my collection insertion operator overload I was using a copy of the object instead of a reference which was calling the copy constructor. After fixing this, I was able to delete my copy and move semantics without any issue.
+
+Incorrect Code:
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Collection<T> collection) {
+    for (size_t i = 0; i < collection.size(); i++) {
+        os << collection[i];
+    }
+    return os;
+}
+
+Corrected Code:
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Collection<T>& collection) {
+    for (size_t i = 0; i < collection.size(); i++) {
+        os << collection[i];
+    }
+    return os;
+}
+
+Questions to Answer
+------------------------------------
+Q1) The difference between the implementations/utilizations of a functor and a lambda expression. When is appropriate to use each one?
+A1) A functor is a class or struct that has an overloaded operator() function. The operator() function can be called like a regular function and can take arguments. A Lambda expression on the other hand, is a shorthand way to define a function object inline. It is defined using the [] operator, followed by the parameter list and function body. For a simple functionality, needed in local scope only, a lambda can be used. Otherwise use a functor.
+
+We use a lambda expression for simple functions that are only used once or twice. We can also capture variables from the enclosing scope and can define nested functions. A Functor is used for more complex functions that are used multiple times or maintain some kind of state. You can also define additional member functions and can specify return types for the function object.
+
+Functor Prototype in this WS:
+class SpellChecker {
+    private:
+        std::string m_badWords[ARR_SIZE] {};
+        std::string m_goodWords[ARR_SIZE] {};
+        size_t m_replacements[ARR_SIZE] { 0 }; // Parallel array to keep track of the number of replacements of each bad word
+    public:
+        SpellChecker() = default;
+
+        // Loads the content of the file into the attributes
+        SpellChecker(const char* filename);
+
+        // Searches text and replaces any misspelled word with the correct version
+        void operator()(std::string& text);
+
+        // Inserts into the parameter how many times each misspelled word has been replaced by the correct word using the current instance
+        void showStatistics(std::ostream& out) const;
+};
+
+Lambda Expression in this WS:
+auto changePrice = [&](Book& book) {
+    if (book.country() == "US") {
+        book.price() *= usdToCadRate;
+    } else if (book.country() == "UK" && book.year() >= 1990 && book.year() <= 1999) {
+        book.price() *= gbpToCadRate;
+    }
+};
+
+Q2) The constructor for SpellChecker generates an exception in certain conditions. How would you change your code to achieve the same result, but without exceptions (both on the constructor and on the client side)? Compare the two solutions.
+A2) If we didnt throw the exception as we did right now, we would have to have an if statement in the code that checks whether the object was created successfully or not and then we would have to print a message stating the error. This is very difficult to do again and again as exceptions can be very unpredictable. Therefore, it is a good practice to implement exception handling in your code.
+
+Q3) The classes Movie and Book contain almost identical logic in loading data from the file. How would you redesign the classes in order not to duplicate that logic?
+A3) There can be two methods to avoid duplicating the logic for loading data from a file in the Movie and Book classes.
+1) We can introduce a common base class that encapsulates this functionality. The base class can define a virtual method for loading the data from the file, which can be implemented in the derived classes.
+2) We can also create an anonymous class that only has one object which can be used to carry out the functionality of loading data from the file.
+
+Q4) The classes Movie and Book are instantiated from the main() function using a custom constructor, but they also contain a default constructor. Is the default constructor necessary? Could you remove it? Justify your answer.
+A4) Yes, the default constructor is still needed in order to implement the other constructor overloads. However, if you wish to remove the default constructor, you can provide default values to the overloaded / custom constructor. Even if the code works without the default constructor, it is a good idea to have them to be safe for future use.

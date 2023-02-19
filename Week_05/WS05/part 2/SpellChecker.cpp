@@ -41,8 +41,7 @@ namespace sdds {
     void SpellChecker::operator()(std::string& text) {
 // Find all instances of the bad word in the text received and replace all of them. Loop within the line.
         size_t start{};
-
-        for (int i = 0; i < ARR_SIZE; i++)
+        for (size_t i = 0; i < ARR_SIZE; i++)
         {
             start = 0;
             while ((start = text.find(m_badWords[i], start)) != std::string::npos)
