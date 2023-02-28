@@ -8,6 +8,8 @@ Having prototypes for the rule of 3 in the header would be good practice. Copy a
 Functions added outside of the spec should be in the private scope (eg setEmpty). For the comparison of move vs copy it would better to do a direct comparison of the code to outline the exact differences between the two. Also it would be good to go more into how chrono works  and was used to measure the operations.
 - WS03 : 9 / 10 <br />
 Query function without const (display, size, operator[]). For the reasons to why templates aren't split, it's not just so it's easy to share via header includes but consider what occurs to the visibility of the template if split up. The full visibility of the templates definition needs to be available in the scope where it gets used. In a typical split this visibility breaks. The inclusion of the default constr to pair isn't listed in the reflection and the other functions reasonings should be written in aligned to why they were needed for the template to function.
+-WS04 : 9.5 / 10 <br />
+Copy assignment operator doesn't have a clause to validate the source object's resources before allocating memory in the case it's nullptr / set the current object's resource to nullptr if required.
 
 # Disclaimer
 Please don't just copy the code mindlessly without trying to solve the problems yourself, it's totally pointless if you actually wanna learn how to write software and a blatant violation of the [Academic Integrity](https://www.senecacollege.ca/about/policies/academic-integrity-policy.html) policy of the course.
