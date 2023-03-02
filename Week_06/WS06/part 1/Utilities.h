@@ -5,11 +5,8 @@
 #include <iostream>
 
 namespace sdds {
-    class Utilities {
-    public:
-        // Creates instances on the Person hierarchy
-        Person* buildInstance(std::istream& in);
-    };
+    // Creates instances on the Person hierarchy
+    Person* buildInstance(std::istream& in);
 }
 
 #endif // SDDS_UTILITIES_H

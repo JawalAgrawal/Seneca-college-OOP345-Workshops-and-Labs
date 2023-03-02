@@ -20,7 +20,7 @@ namespace sdds {
         College& operator +=(Person* thePerson);
 
         // Iterates over the persons stored in m_persons and prints their details
-        void display(std::ostream& out) const;
+        void display(std::ostream& out = std::cout) const;
     };
 }
 
