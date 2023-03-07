@@ -22,7 +22,7 @@ namespace sdds {
         std::string id() const;
         // A query that returns the age of the employee
         std::string age() const;
-        // A query that inserts in the first parameter the content of the employee object in the format
+        // A query that inserts in the first parameter the content of the employee object
         void display(std::ostream& out = std::cout) const;
 
     };

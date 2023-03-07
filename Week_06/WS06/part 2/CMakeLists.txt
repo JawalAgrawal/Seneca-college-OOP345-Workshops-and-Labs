@@ -13,4 +13,4 @@ add_executable(part_2
         Person.h
         Utilities.cpp
         Utilities.h
-        w6_p2.cpp)
+        w6_p2.cpp Professor.h Professor.cpp Student.h Student.cpp)
