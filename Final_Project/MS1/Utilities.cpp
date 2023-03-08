@@ -19,16 +19,22 @@ namespace sdds {
     // Extracts a token from string str referred to by the first parameter.
     std::string Utilities::extractToken(const std::string& str, size_t& next_pos, bool& more) {
         size_t end_pos = str.find(m_delimiter, next_pos);
-        std::string tokenExtracted = str.substr(next_pos, (end_pos - next_pos));
-        
+        std::string tokenExtracted {};
+
         tokenExtracted.erase(0, tokenExtracted.find_first_not_of((" \t\r\n")));
         tokenExtracted.erase(0, tokenExtracted.find_last_not_of((" \t\r\n")) + 1);
 
-        if (more) {
+        if (end_pos != std::string::npos) {
+            tokenExtracted = str.substr(next_pos, end_pos - next_pos);
             next_pos = end_pos + 1;
+            more = true;
         } else {
+            tokenExtracted = str.substr(next_pos);
             next_pos = str.length();
+            more = false;
         }
+        (tokenExtracted.length() > m_widthField) ? m_widthField = tokenExtracted.length() : m_widthField;
+        if (tokenExtracted.empty()) { throw "ERROR: Token is empty!"; }
 
         return tokenExtracted;
     }

@@ -15,7 +15,7 @@ namespace sdds {
     class Utilities {
     private:
         size_t m_widthField { 1 };
-        static char m_delimiter;
+        inline static char m_delimiter {};
     public:
         Utilities() = default;
         // Sets the field width of the current object to the value of parameter
